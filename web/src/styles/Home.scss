@@ -1,0 +1,28 @@
+//Main.
+.main {
+    position: relative;
+    top: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+
+    .landing__start__button {
+        padding: 1rem;
+        border: transparent;
+        border-radius: 5rem;
+        margin: 5rem 0;
+        background-color: rgba(83, 112, 98, 0.404);
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .landing__start__button:hover {
+        background-color: rgba(61, 88, 75, 0.842);
+        transform: scale(1.2);
+        transition: all 1s;
+    }
+}

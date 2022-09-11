@@ -8,10 +8,23 @@
         z-index: 7;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        margin-right: 0.3rem;
+        font-size: 0.9rem;
+
+        &__item {
+            height: 2rem;
+        }
+
+        .logo{
+            height: 4rem;
+            padding: 0.5rem;
+            margin-left: 0.5rem;
+        }
         
         .link {
             color: rgb(26, 25, 25);
             font-weight: 500;
+            
         }
 
         .signup {
@@ -99,7 +112,7 @@
             color: rgb(255, 255, 255);
             letter-spacing: 0.15rem;
             text-transform: uppercase;
-            font-size: 2rem;
+            font-size: 2.5rem;
             filter: drop-shadow(50px 50px 15px rgb(113, 117, 111));
             
             // text-shadow: 1px 0px 1px #797575a2;
@@ -108,6 +121,10 @@
             left: calc(50% - 130px);
             z-index: 4;
             font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            .special__letter {
+                color: rgb(61, 75, 71);
+            }
         }
     }
 

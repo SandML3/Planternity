@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import leavesLeft from '../images/leaves_left.png';
-import leavesRight from '../images/leaves_right.png';
-import smallLeavesRight from '../images/small_leaves_right.png';
+import leavesLeft from '../../images/leaves_left.png';
+import leavesRight from '../../images/leaves_right.png';
+import smallLeavesRight from '../../images/small_leaves_right.png';
 
-import '../styles/LandingHeader.scss';
+import '../../styles/LandingHeader.scss';
+import logo from '../../images/logo_white.svg'
 
 const LandingHeader = (props) => {
     
@@ -23,8 +24,9 @@ const LandingHeader = (props) => {
   return <header className='header'>
 
         <nav className='header__menu'>
-          <li className='header__menu__item signup list_item'><Link to ='' className='link'>Registrarse</Link></li>
-          <li className='header__menu__item login  list_item'><Link to ='' className='link'>Iniciar sesión</Link></li>
+          <img src={logo} alt='logo' title='logo' className='logo'/>
+          <li className='header__menu__item signup list_item'><Link to ='/sign-up' className='link'>Registrarse</Link></li>
+          <li className='header__menu__item login  list_item'><Link to ='/login' className='link'>Iniciar sesión</Link></li>
         </nav>
 
         <section className='header__section'>
@@ -55,7 +57,7 @@ const LandingHeader = (props) => {
 
           <h1 className='header__section__title' 
           style={{transform: `translateY(${offsetY * 0.4}px) scale(${1 + offsetY * 0.001})`}}>
-          planternity
+          pots<span className='special__letter'>&</span>buds
           </h1>
 
         </section>

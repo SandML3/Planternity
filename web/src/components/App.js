@@ -1,10 +1,9 @@
 import '../styles/App.scss';
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 
-
-
-import LandingHeader from './LandingHeader';
-import LandingSlider from './LandingSlider';
+import { Route, Routes } from 'react-router-dom';
+import Home from './Home';
+import LoginPage from './LoginPage';
 
 
 function App() {
@@ -18,16 +17,12 @@ function App() {
   return (
     <div className='page'>
       
-      <LandingHeader/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/sign-up' element={'sign up'}/>
 
-      <main className='main'>
-
-        <LandingSlider/>
-
-        <button className='landing__start__button'>Comenzar</button>
-           
-      </main>
-
+      </Routes>
     </div>
   );
 }

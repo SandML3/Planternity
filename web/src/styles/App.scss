@@ -12,6 +12,10 @@
     font-family:'Open Sans', sans-serif;
 }
 
+//Variables.
+$title_font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$common_font: 'Open Sans', sans-serif;
+
 
 //Generales.
 .link {
@@ -23,58 +27,3 @@
     list-style: none;
 }
 
-
-
-
-
-//Main.
-.main {
-    position: relative;
-    top: 60vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-   
-
-    .landing__start__button {
-        padding: 1rem;
-        border: transparent;
-        border-radius: 5rem;
-        margin: 5rem 0;
-        background-color: rgba(83, 112, 98, 0.404);
-        color: white;
-        font-weight: 700;
-        text-transform: uppercase;
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-}
-
-
-//     // &__list {
-//     //  display: flex;
-//     //  align-items: center;
-//     //  justify-content: center;
-//     //  text-align: center;
-//     //  gap: 0.8rem;
-//     //  color: rgb(255, 255, 255);
-//     //  font-weight: 500; 
-//     // }
-
-//     // &__links__item {
-//     //     list-style: none;
-//     //     background-color: rgba(163, 182, 181, 0.85);
-//     //     border: 1px solid rgb(163, 182, 181);
-//     //     padding: 1rem;
-//     //     border-bottom-left-radius: 1rem;
-//     //     padding-top: 9rem;
-//     //     z-index: 0;
-//     //     position: relative;
-//     //     top: 13rem;
-
-//     // }
-
-//     // :nth-child(1n) {
-//     //     animation: info 2s infinite;
-//     // }
-    
