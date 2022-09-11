@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    // background-color: rgb(243, 243, 243);
+    font-size: 1rem;
+    font-family:'Open Sans', sans-serif;
+}
+
+
+//Generales.
+.link {
+    text-decoration: none;
+    padding: 1rem;
+}
+
+.list_item {
+    list-style: none;
+}
+
+
+
+
+
+//Main.
+.main {
+    position: relative;
+    top: 60vh;
+}
+
+
+//     // &__list {
+//     //  display: flex;
+//     //  align-items: center;
+//     //  justify-content: center;
+//     //  text-align: center;
+//     //  gap: 0.8rem;
+//     //  color: rgb(255, 255, 255);
+//     //  font-weight: 500; 
+//     // }
+
+//     // &__links__item {
+//     //     list-style: none;
+//     //     background-color: rgba(163, 182, 181, 0.85);
+//     //     border: 1px solid rgb(163, 182, 181);
+//     //     padding: 1rem;
+//     //     border-bottom-left-radius: 1rem;
+//     //     padding-top: 9rem;
+//     //     z-index: 0;
+//     //     position: relative;
+//     //     top: 13rem;
+
+//     // }
+
+//     // :nth-child(1n) {
+//     //     animation: info 2s infinite;
+//     // }
+    

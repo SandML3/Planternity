@@ -1,0 +1,23 @@
+.button__slide {
+    position: absolute;
+    border: transparent;
+    background-color: transparent;
+    bottom: 1rem;
+    
+}
+
+.button {
+    width: 0.7rem;
+    opacity: 0.8;
+    margin: 5vw;
+    
+}
+
+.next {
+    right: 0;
+    
+}
+
+.prev {
+    left: 0;
+}
