@@ -6,8 +6,30 @@
 
 .slider {
     display: flex;
+    gap: 2rem;
     cursor: grab;
 }
 
+.dots__container {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    margin-top: 0.5rem;
+    left: calc(50% - 1.35rem);
+   
 
+    .dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background-color: black;
+    }
+
+    .dot-active {
+        opacity: 0.6;
+        background-color: rgb(59, 71, 64);
+        // border: 2px solid black;
+        // background-color: transparent;
+    }
+}
 
