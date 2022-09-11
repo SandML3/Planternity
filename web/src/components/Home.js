@@ -1,16 +1,17 @@
+import { Link } from 'react-router-dom';
 import '../styles/Home.scss';
 
 import LandingHeader from './HomeComponents/LandingHeader';
 import LandingSlider from './HomeComponents/LandingSlider';
 
-const Home = (props) => {
+const Home = ({ isUserLogged }) => {
 
 
   return <>
-      <LandingHeader/>
+      <LandingHeader isUserLogged={isUserLogged} />
       <main className='main'>
         <LandingSlider/>
-        <button className='landing__start__button'>Comenzar</button>
+        <Link to='' className='landing__start__button link'>Comenzar</Link>
       </main>
   </>
 };

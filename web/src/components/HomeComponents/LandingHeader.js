@@ -8,7 +8,7 @@ import smallLeavesRight from '../../images/small_leaves_right.png';
 import '../../styles/LandingHeader.scss';
 import logo from '../../images/logo_white.svg'
 
-const LandingHeader = (props) => {
+const LandingHeader = ( {isUserLogged} ) => {
     
 //Header parallax.
   const [offsetY, setOffsetY] = useState(0);
@@ -20,14 +20,22 @@ const LandingHeader = (props) => {
     // return window.removeEventListener('scroll', handleScroll);
   }, [])
 
+  const navigationBar = isUserLogged
+    ?<nav className='header__menu'>
+      <img src={logo} alt='logo' title='logo' className='logo'/>
+      <li className='header__menu__item login  list_item'><Link to ='/login' className='link'>Cerrar sesión</Link></li>
+    </nav>
+
+    :<nav className='header__menu'>
+      <img src={logo} alt='logo' title='logo' className='logo'/>
+      <li className='header__menu__item signup list_item'><Link to ='/sign-up' className='link'>Registrarse</Link></li>
+      <li className='header__menu__item login  list_item'><Link to ='/login' className='link'>Iniciar sesión</Link></li>
+    </nav>
+
 
   return <header className='header'>
 
-        <nav className='header__menu'>
-          <img src={logo} alt='logo' title='logo' className='logo'/>
-          <li className='header__menu__item signup list_item'><Link to ='/sign-up' className='link'>Registrarse</Link></li>
-          <li className='header__menu__item login  list_item'><Link to ='/login' className='link'>Iniciar sesión</Link></li>
-        </nav>
+        {navigationBar}
 
         <section className='header__section'>
 
