@@ -8,11 +8,7 @@ import logo from '../images/logo_color.svg'
 import '../styles/LoginPage.scss';
 
 
-
-
 const LoginPage = ({ userData, updateUserData, sendLoginToApi, loginMessage }) => {
-
-
   const handleClick = (ev) => {
     ev.preventDefault();
     sendLoginToApi(userData.email, userData.password );
@@ -20,9 +16,10 @@ const LoginPage = ({ userData, updateUserData, sendLoginToApi, loginMessage }) =
 
   return <>
     <header className='header__login'>
+        <Link className='link header__sign-up__link' to='/'>Volver al inicio</Link>
         <img src={headerImage} className='header__login__image' alt='' title=''/>
         <img src={logo} className='header__login__logo' alt='' title=''/>
-        <h1 className='header__login__title'> ¡Bienvenido! </h1>
+        <h1 className='header__login__title'> ¡Hola de nuevo! </h1>
         <p className='header__login__text'>Inicia sesión para seguir aprendiendo</p>
     </header>
     <main className='main__login'>

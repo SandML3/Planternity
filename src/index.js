@@ -21,13 +21,13 @@ app.set('view engine', 'ejs');
 
 
 //Create users database.
-const usersDatabase = new Database ('./src/database/users.db')
+const db = new Database ('./src/database/database.db')
 
 
 
 //User login endpoint.
-app.post('/users', ((req, res) => {
-  const query = usersDatabase.prepare('SELECT * FROM users WHERE email= ?')
+app.post('/api/users', ((req, res) => {
+  const query = db.prepare('SELECT * FROM users WHERE email= ?')
   const user = query.get(req.body.email);
 
   const result = !user
@@ -43,21 +43,39 @@ app.post('/users', ((req, res) => {
       :{ 
         success: true,
         userId: user.id
-        }
-  //If not, save data in db.
-  // const result = user
-  //   ?{
-  //     success: false,
-  //     errorMessage: 'El email que has usado ya está registrado'
-  //   }
-  //   :{ 
-  //     success: true,
-  //     userId: querySave.run(req.body.email, req.body.password).lastInsertRowid
-  //   };
+        };
 
   res.json(result);
-}))
+}));
 
+
+//User signup endpoint.
+app.post('/api/sign-up', ((req, res) => {
+  
+  const checkQuery = db.prepare('SELECT * FROM users WHERE email= ?')
+  const user = checkQuery.get(req.body.email);
+
+  const query = db.prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)')
+
+
+
+  if (user) {
+    const result = {
+      success: false,
+      errorMessage: 'El email introducido ya está registrado.'
+    }
+    return res.json(result)
+  } else {
+      const result= query.run(req.body.name, req.body.email, req.body.password);
+      result.changes;
+  
+      res.json({
+        success: true,
+        userId: result.lastInsertRowid
+      });
+    }
+
+  }));
 
 
 

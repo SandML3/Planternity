@@ -7,6 +7,8 @@ import LoginPage from './LoginPage';
 import { useState } from 'react';
 
 import apiUser from '../services/api-users';
+import UserProfile from './UserProfile';
+import SignUpPage from './SignUpPage';
 
 
 
@@ -24,7 +26,11 @@ function App() {
     plants: []
   });
 
-  const [loginMessage, setLoginMessage] = useState('');
+
+  const [infoMessage, setInfoMessage] = useState({
+    login: '',
+    signUp: ''
+  });
 
   const updateUserData = (key, value) => {
     setUserData({...userData, [key]:value })
@@ -36,13 +42,22 @@ function App() {
     password: userData.password }).then(response => {
       response.success
        ?setUserData({...userData, id: response.userId})  
-       :setLoginMessage(response.errorMessage)
-       
-    })
-
-    
-      
+       :setInfoMessage({...infoMessage, login:response.errorMessage})
+    });
   };
+
+  const sendSingUpToApi = () => {
+    apiUser.sendSingUpToApi({ 
+      name: userData.name,
+      email: userData.email, 
+      password: userData.password }).then(response => {
+        response.success
+          ?window.location.href=`/user/${response.userId}`
+          :setInfoMessage({...infoMessage, signUp:response.errorMessage})
+      })
+      };
+
+  //-------------------------------FALTA REDIRECCIONAR AL USUARIO CUANDO SE PRODUCE EL INICIO DE SESIÓN.
 
 
   return (
@@ -60,12 +75,24 @@ function App() {
           userData={userData} 
           updateUserData={updateUserData} 
           sendLoginToApi={sendLoginToApi}
-          loginMessage={loginMessage}
+          loginMessage={infoMessage.login}
           />}
         />
 
+        <Route path='/sign-up' element={<SignUpPage userData={userData} 
+          updateUserData={updateUserData} 
+          sendSingUpToApi={sendSingUpToApi}
+          loginMessage={infoMessage.signUp}/>}/>
 
-        <Route path='/sign-up' element={'sign up'}/>
+        <Route 
+        path='/user/:userId' 
+        element={<UserProfile 
+          userData={userData} 
+          // updateUserData={updateUserData} 
+          // sendLoginToApi={sendLoginToApi}
+          // loginMessage={loginMessage}
+          />}
+        />
 
       </Routes>
     </div>

@@ -1,5 +1,4 @@
 // login
-
 const sendLoginToApi = data => {
     console.log('Se están enviando datos al login:', data);
 
@@ -8,30 +7,30 @@ const sendLoginToApi = data => {
       password: data.password
     };
 
-    return fetch('//localhost:4000/users', {
+    return fetch('//localhost:4000/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bodyParams)
     })
       .then(response => response.json())
       .then(response => response);
-  }
+  };
+
+
 
   // signup
-  
-//   const sendSingUpToApi = data => {
-//     console.log('Se están enviando datos al signup:', data);
-//     // CAMBIA ESTE FETCH PARA QUE APUNTE A UN ENDPOINT DE TU SERVIDOR, PIENSA SI DEBE SER GET O POST, PIENSA QUÉ DATOS DEBES ENVIAR, ETC
-//     return fetch('//localhost:4000/sign-up', {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(data)
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//        return data;
-//     });
-//   };
+  const sendSingUpToApi = data => {
+    console.log('Se están enviando datos al signup:', data);
+
+    return fetch('//localhost:4000/api/sign-up', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => data)
+  };
+ 
   
   // profile
   
@@ -83,7 +82,7 @@ const sendLoginToApi = data => {
   
   const objToExport = {
     sendLoginToApi: sendLoginToApi,
-//     sendSingUpToApi: sendSingUpToApi,
+    sendSingUpToApi: sendSingUpToApi,
 //     sendProfileToApi: sendProfileToApi,
 //     getProfileFromApi: getProfileFromApi,
 //     getUserMoviesFromApi: getUserMoviesFromApi
