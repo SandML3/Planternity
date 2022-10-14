@@ -1,15 +1,15 @@
 import '../styles/App.scss';
-// import { useState, useEffect } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
-import Home from './Home';
-import LoginPage from './LoginPage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import apiUser from '../services/api-users';
+import ls from '../services/localstorage';
+
+import Home from './Home';
+import LoginPage from './LoginPage';
 import UserProfile from './UserProfile';
 import SignUpPage from './SignUpPage';
-
 
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
   // const { pathname } = useLocation();
 
   // const dataPath = matchPath('plant/:plantId', pathname)
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState(ls.get('userData') || {
     id: '',
     name: '',
     email: '',
@@ -29,19 +29,30 @@ function App() {
 
   const [infoMessage, setInfoMessage] = useState({
     login: '',
-    signUp: ''
+    signUp: '',
+    home: ''
   });
+
+
+  useEffect(() => {
+    ls.set('userData', userData)
+  }, [userData]);
 
   const updateUserData = (key, value) => {
     setUserData({...userData, [key]:value })
-  }
+  };
+
+  const updateInfoMessage = (key, value) => {
+    setInfoMessage({...infoMessage, [key]:value})
+  };
 
   const  sendLoginToApi = () => {
     apiUser.sendLoginToApi({ 
     email: userData.email, 
     password: userData.password }).then(response => {
+      setUserData({...userData, id: response.userId || ''})
       response.success
-       ?setUserData({...userData, id: response.userId})  
+        ?window.location.href=`/user/${response.userId}`
        :setInfoMessage({...infoMessage, login:response.errorMessage})
     });
   };
@@ -51,13 +62,12 @@ function App() {
       name: userData.name,
       email: userData.email, 
       password: userData.password }).then(response => {
+        setUserData({...userData, id: response.userId || ''})
         response.success
           ?window.location.href=`/user/${response.userId}`
           :setInfoMessage({...infoMessage, signUp:response.errorMessage})
       })
       };
-
-  //-------------------------------FALTA REDIRECCIONAR AL USUARIO CUANDO SE PRODUCE EL INICIO DE SESIÓN.
 
 
   return (
@@ -66,7 +76,12 @@ function App() {
       <Routes>
         <Route 
         path='/' 
-        element={<Home isUserLogged={!!userData.id}/>}
+        element={<Home 
+          id={userData.id}
+          updateUserData={updateUserData}
+          infoMessage={infoMessage.home}
+          updateInfoMessage={updateInfoMessage}
+          />}
         />
 
         <Route 
@@ -82,7 +97,7 @@ function App() {
         <Route path='/sign-up' element={<SignUpPage userData={userData} 
           updateUserData={updateUserData} 
           sendSingUpToApi={sendSingUpToApi}
-          loginMessage={infoMessage.signUp}/>}/>
+          signUpMessage={infoMessage.signUp}/>}/>
 
         <Route 
         path='/user/:userId' 

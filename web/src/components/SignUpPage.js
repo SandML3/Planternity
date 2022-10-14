@@ -6,7 +6,7 @@ import InputText from './InputText';
 import headerImage from '../images/login_header.jpg';
 import logo from '../images/logo_color.svg'
 
-const SignUpPage = ({ userData, updateUserData, sendSingUpToApi, loginMessage }) => {
+const SignUpPage = ({ userData, updateUserData, sendSingUpToApi, signUpMessage }) => {
     const handleClick = (ev) => {
         ev.preventDefault();
         sendSingUpToApi(userData.name, userData.email, userData.password );
@@ -64,7 +64,7 @@ const SignUpPage = ({ userData, updateUserData, sendSingUpToApi, loginMessage })
           
       </form>
 
-      <p className='main__sign-up__message'>{loginMessage}</p>
+      <p className='main__sign-up__message'>{signUpMessage}</p>
 
     </main>
     </>

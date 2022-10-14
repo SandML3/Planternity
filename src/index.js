@@ -62,7 +62,7 @@ app.post('/api/sign-up', ((req, res) => {
   if (user) {
     const result = {
       success: false,
-      errorMessage: 'El email introducido ya está registrado.'
+      errorMessage: 'La dirección de correo electrónico ya ha sido registrada.'
     }
     return res.json(result)
   } else {

@@ -17,15 +17,15 @@ const LandingSlider = (props) => {
 
   //Arrows logic.
   const nextSlide = () => {
-    slideItem !== -435
-      ?setSlideItem(slideItem - 435 )
-      :setSlideItem(slideItem + 435);
+    slideItem !== -325
+      ?setSlideItem(slideItem - 325 )
+      :setSlideItem(slideItem + 325);
   };
 
   const prevSlide = () => {
-    slideItem === -435 ||  slideItem !== 0
-      ?setSlideItem(slideItem + 435 )
-      :setSlideItem(slideItem -435);
+    slideItem === -325 ||  slideItem !== 0
+      ?setSlideItem(slideItem + 325 )
+      :setSlideItem(slideItem -325);
   };
 
 
@@ -44,7 +44,7 @@ const LandingSlider = (props) => {
 
 
   return <motion.div className="slider-container">
-        <motion.div className='slider' drag='x' dragConstraints={{right: 0, left:-435}} animate={{x : slideItem }}>
+        <motion.div className='slider' drag='x' dragConstraints={{right: 0, left:-340}} animate={{x : slideItem }}>
 
             {slidersItems}
 

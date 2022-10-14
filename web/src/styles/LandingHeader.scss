@@ -10,9 +10,11 @@
         grid-template-columns: repeat(3, 1fr);
         margin-right: 0.3rem;
         font-size: 0.9rem;
+        width: 100vw;
 
         &__item {
             height: 2rem;
+           
         }
 
         .logo{
@@ -35,7 +37,7 @@
             background-color: rgba(255, 255, 255, 0.322);
             backdrop-filter: blur(2px);
             border: 0.3px rgba(255, 255, 255, 0.616) solid;
-            padding: 0.2rem;
+            padding: 0.3rem;
             background: linear-gradient(#ffffffa4, transparent);
             margin-right: 0.5rem;
         }
@@ -48,7 +50,25 @@
             background-color: rgba(143, 158, 156, 0.322);
             backdrop-filter: blur(2px);
             border: 0.3px rgb(184, 197, 196) solid;
-            padding: 0.2rem;
+            padding: 0.3rem;
+            margin-right: 1rem;
+        }
+
+        .closeSesion {
+            grid-column: 4;
+            grid-row: 1;
+            border-radius: 1rem;
+            background-color: rgba(94, 109, 107, 0.322);
+            backdrop-filter: blur(2px);
+            border: 0.3px rgb(171, 187, 186) solid;
+            padding: 0.5rem;
+            margin-right: 1rem;
+            margin-top: 1rem;
+            font-weight: 500;
+            height: 2.3rem;
+            color: rgb(42, 53, 53);
+           
+            
         }
     }
 

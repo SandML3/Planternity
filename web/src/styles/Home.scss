@@ -7,12 +7,41 @@
     align-items: center;
     justify-content: center;
    
+    &__home__text {
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+        max-width:85%;
+
+        &__title {
+            color: rgb(52, 58, 55);
+            font-weight: 800;
+            width: 70vw;
+            margin: 0 auto;
+            line-height: 1.8rem;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        &__text {
+            width: 80vw;
+            padding: 0.2rem;
+        }
+
+        &__text--two {
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+    }
 
     .landing__start__button {
         padding: 1rem;
         border: transparent;
         border-radius: 5rem;
-        margin: 5rem 0;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
         background-color: rgba(83, 112, 98, 0.404);
         color: white;
         font-weight: 700;
@@ -24,5 +53,12 @@
         background-color: rgba(61, 88, 75, 0.842);
         transform: scale(1.2);
         transition: all 1s;
+    }
+
+    .userMessage {
+        margin-bottom: 5rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: rgb(72, 97, 88);
     }
 }

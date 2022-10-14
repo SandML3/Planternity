@@ -8,7 +8,7 @@ import smallLeavesRight from '../../images/small_leaves_right.png';
 import '../../styles/LandingHeader.scss';
 import logo from '../../images/logo_white.svg'
 
-const LandingHeader = ( {isUserLogged} ) => {
+const LandingHeader = ( { isUserLogged, updateUserData } ) => {
     
 //Header parallax.
   const [offsetY, setOffsetY] = useState(0);
@@ -20,10 +20,19 @@ const LandingHeader = ( {isUserLogged} ) => {
     // return window.removeEventListener('scroll', handleScroll);
   }, [])
 
+  const handleCloseSesion = (ev) => {
+    updateUserData('id', '');
+  }
+
+
   const navigationBar = isUserLogged
     ?<nav className='header__menu'>
       <img src={logo} alt='logo' title='logo' className='logo'/>
-      <li className='header__menu__item login  list_item'><Link to ='/login' className='link'>Cerrar sesión</Link></li>
+      <button 
+      to ='/login' 
+      className='link closeSesion'
+      onClick={handleCloseSesion}
+      >Cerrar sesión</button>
     </nav>
 
     :<nav className='header__menu'>

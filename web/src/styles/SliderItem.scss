@@ -3,6 +3,7 @@
     text-align: center;
     background-color: white;
     font-family: 'Open Sans', sans-serif;
+    margin-left: 0.3rem;
 
     &__title {
         color: rgb(52, 58, 55);
@@ -15,7 +16,7 @@
 
     &__text {
         color: rgb(52, 58, 55);
-        width: 80vw;
+        width: 70vw;
         margin: 0 auto;
         line-height: 1.6rem;
         margin-bottom: 0.7rem;
