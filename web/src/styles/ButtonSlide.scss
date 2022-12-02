@@ -1,23 +1,22 @@
 .button__slide {
-    position: absolute;
+    position: relative;
     border: transparent;
     background-color: transparent;
-    top: 50%;
-    
 }
 
 .button {
     width: 0.7rem;
     opacity: 0.8;
-    
-}
-
-.next {
-    right: 0;
-    
-    
+    position: absolute;
+    //top: -75px;
+    top: -90px
 }
 
 .prev {
     left: 0;
 }
+
+.next {
+    left: calc(100% - 11.2px);
+}
+

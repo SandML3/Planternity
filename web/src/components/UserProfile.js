@@ -1,28 +1,49 @@
 // import { Link } from 'react-router-dom';
-import '../styles/UserProfile.scss';
-import logo from '../images/logo_color.svg'
-import { Link } from 'react-router-dom';
+import "../styles/UserProfile.scss";
+import logo from "../images/logo_color.svg";
 
+import apiUser from "../services/api-users";
 
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
+const UserProfile = ({ userData, updateUserData, sendUserPlantsToApi }) => {
+  const [allPlants, setAllPlants] = useState([]);
 
-const UserProfile = ({userData}) => {
+  useEffect(() => {
+    apiUser
+      .getUserPlantsFromApi()
+      .then((response) => setAllPlants(response.plants));
+  }, []);
 
+  console.log(allPlants);
 
-  return <div className='page__user'>
-      <header className='header__user'>
-        <h1 className='header__user__title'>¡Bienvenida, {userData.name}!</h1>
-        <p className='header__user__text'>Prepara la pala y la regadera, que empezamos.</p>
-        <Link to='/' title='Volver a Home' ><img className='logo' src={logo} alt='logo' title='Logo'/></Link>
+  const plantsList = allPlants.map((plant, index) => (
+    <li key={index} className="header__user__plantList__item">
+      <div className="plantImage__container">
+        <img
+          src={require(`../images/plants/${plant.image}.jpg`)}
+          title={`Foto de ${plant.common_name}`}
+          alt={`Foto de ${plant.common_name}`}
+          className="plantImage"
+        />
+      </div>
+      {plant.common_name}
+    </li>
+  ));
 
-        <div className='header__user__menu'>
-            <button className='button__menu'>Buscar</button>
-            <button className='button__menu'>Mis plantitas</button>
-            <button className='button__menu'>Más información</button>
-        </div>
+  return (
+    <div className="page__user">
+      <header className="header__user">
+        <h1 className="header__user__title">¡Bienvenida, {userData.name}!</h1>
+        <p className="header__user__text"></p>
+        <Link to="/" title="Volver a Home">
+          <img className="logo" src={logo} alt="logo" title="Logo" />
+        </Link>
 
+        <ul className="header__user__plantList">{plantsList}</ul>
       </header>
-      
-  </div>
+    </div>
+  );
 };
 export default UserProfile;

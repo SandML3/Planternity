@@ -1,5 +1,6 @@
 .slider-container {
     margin: 0 auto;
+    padding: 1rem;
     width: 80vw;
     overflow-x: hidden;
     position: relative;
@@ -7,7 +8,8 @@
 
 .slider {
     display: flex;
-    gap: 2rem;
+    justify-content: flex-start;
+    gap: 2.5rem;
     cursor: grab;
 }
 
@@ -29,8 +31,6 @@
     .dot-active {
         opacity: 0.6;
         background-color: rgb(79, 94, 85);
-        // border: 2px solid black;
-        // background-color: transparent;
     }
 }
 

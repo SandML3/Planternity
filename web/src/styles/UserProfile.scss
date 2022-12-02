@@ -1,15 +1,16 @@
 .page__user {
     background-color: rgb(221, 233, 232);
-    height: 100vh;
+    padding: 2rem;
+    min-height: 100%;
+
 }
 
 .header__user {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2.5rem;
-    height: 10%;
-    padding-top: 5rem;
+    padding-top: 2rem;
+    padding-left: 1rem;
     
 
     &__title {
@@ -33,29 +34,37 @@
         margin: 2rem;
     }
 
-    &__menu {
-        display: flex;
-        justify-content: center;
+    &__plantList {
+        margin: 0 auto;
+
+        &__item {
+            list-style: none;
+            display: flex;
+            gap: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            margin: 2rem;
+            font-weight: 500;
         
-
-        .button__menu {
-            width: auto;
-            padding: 1rem;
-            margin: 0.5rem;
-            background-color: rgba(255, 255, 255, 0.322);
-            border: 1px solid  rgba(227, 235, 232, 0.918);
-            box-shadow: 2px 0 10px rgba(188, 204, 201, 0.411) inset;
-            backdrop-filter: blur(2px);
-            border: transparent;
-            border-radius: 1rem;
-            color: white;
-
-            .button__logo {
-                width: 4rem;
-                margin-top: 0.5rem;
+            .plantImage {
+                width: 100%;
+                
+                &__container {
+                    overflow: hidden;
+                    height: 15rem;
+                    width: 15rem;
+                    border-radius: 10px;
+                }
             }
         }
-    }};
+    }
+
+   
+    };
+
+ 
+    
 
 
 

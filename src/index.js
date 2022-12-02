@@ -58,7 +58,6 @@ app.post('/api/sign-up', ((req, res) => {
   const query = db.prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)')
 
 
-
   if (user) {
     const result = {
       success: false,
@@ -67,15 +66,50 @@ app.post('/api/sign-up', ((req, res) => {
     return res.json(result)
   } else {
       const result= query.run(req.body.name, req.body.email, req.body.password);
-      result.changes;
-  
+      //result.changes;
+
       res.json({
         success: true,
         userId: result.lastInsertRowid
       });
     }
-
   }));
+
+
+  app.post('/api/users', ((req, res) => {
+    const query = db.prepare('SELECT * FROM users WHERE email= ?')
+    const user = query.get(req.body.email);
+  
+    const result = !user
+      ?{
+        success: false,
+        errorMessage: 'Este email no está registrado'
+      }
+      :user.password !== req.body.password
+        ? { 
+        success: false,
+        errorMessage: 'La contraseña introducida es incorrecta'
+        }
+        :{ 
+          success: true,
+          userId: user.id
+          };
+  
+    res.json(result);
+  }));
+  
+//Get all plants
+  app.get('/api/plants', ((req, res) => {
+    console.log('devolviendo plantas');
+
+    const query = db.prepare('SELECT * FROM plants')
+    const result = query.all();
+    console.log(result)
+  
+    res.json(result);
+  }));
+  
+
 
 
 

@@ -3,12 +3,13 @@
     text-align: center;
     background-color: white;
     font-family: 'Open Sans', sans-serif;
-    margin-left: 0.3rem;
+    width: 70vw;
+    //margin-left: 0.3rem;
 
     &__title {
         color: rgb(52, 58, 55);
         font-weight: 800;
-        width: 75vw;
+        //width: 75vw;
         margin: 0 auto;
         line-height: 1.8rem;
         margin-bottom: 0.7rem;
@@ -16,10 +17,9 @@
 
     &__text {
         color: rgb(52, 58, 55);
-        width: 70vw;
+        width: 55vw;
         margin: 0 auto;
         line-height: 1.6rem;
-        margin-bottom: 0.7rem;
         font-size: 0.8rem;
     }
 };
