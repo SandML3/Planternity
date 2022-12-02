@@ -1,8 +1,8 @@
 // import { Link } from 'react-router-dom';
-import "../styles/UserProfile.scss";
-import logo from "../images/logo_color.svg";
+import "../../styles/UserProfile.scss";
+import logo from "../../images/logo_color.svg";
 
-import apiUser from "../services/api-users";
+import apiUser from "../../services/api-users";
 
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -22,13 +22,13 @@ const UserProfile = ({ userData, updateUserData, sendUserPlantsToApi }) => {
     <li key={index} className="header__user__plantList__item">
       <div className="plantImage__container">
         <img
-          src={require(`../images/plants/${plant.image}.jpg`)}
+          src={require(`../../images/plants/${plant.image}.jpg`)}
           title={`Foto de ${plant.common_name}`}
           alt={`Foto de ${plant.common_name}`}
           className="plantImage"
         />
       </div>
-      {plant.common_name}
+      <p className="plantName">{plant.common_name}</p>
     </li>
   ));
 

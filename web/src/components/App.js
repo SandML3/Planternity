@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import apiUser from "../services/api-users";
 import ls from "../services/localstorage";
 
-import Home from "./Home";
-import LoginPage from "./LoginPage";
-import UserProfile from "./UserProfile";
-import SignUpPage from "./SignUpPage";
+import Home from "./views/Home";
+import LoginPage from "./views/LoginPage";
+import UserProfile from "./views/UserProfile";
+import SignUpPage from "./views/SignUpPage";
 
 function App() {
   //Routes config.

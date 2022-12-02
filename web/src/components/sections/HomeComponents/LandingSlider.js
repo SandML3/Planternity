@@ -1,6 +1,6 @@
-import "../../styles/LandingSlider.scss";
+import "../../../styles/LandingSlider.scss";
 
-import dataSliderItem from "../../data/sliders_items.json";
+import dataSliderItem from "../../../data/sliders_items.json";
 
 // import { Link } from 'react-router-dom';
 
