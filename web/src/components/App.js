@@ -10,6 +10,7 @@ import Home from "./views/Home";
 import LoginPage from "./views/LoginPage";
 import UserProfile from "./views/UserProfile";
 import SignUpPage from "./views/SignUpPage";
+import AvailablePlants from "./views/AvailablePlants";
 
 function App() {
   //Routes config.
@@ -132,6 +133,7 @@ function App() {
             />
           }
         />
+        <Route path="/plants" element={<AvailablePlants />} />
       </Routes>
     </div>
   );

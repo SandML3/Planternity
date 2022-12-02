@@ -1,6 +1,8 @@
 import apiUser from "../../services/api-users";
 import { useEffect, useState } from "react";
 
+import "../../styles/AvailablePlants.scss";
+
 const AvailablePlants = () => {
   const [allPlants, setAllPlants] = useState([]);
 
@@ -13,7 +15,7 @@ const AvailablePlants = () => {
   console.log(allPlants);
 
   const plantsList = allPlants.map((plant, index) => (
-    <li key={index} className="header__user__plantList__item">
+    <li key={index} className="plantList__item">
       <div className="plantImage__container">
         <img
           src={require(`../../images/plants/${plant.image}.jpg`)}
@@ -26,7 +28,7 @@ const AvailablePlants = () => {
     </li>
   ));
 
-  return <ul className="header__user__plantList">{plantsList}</ul>;
+  return <ul className="plantList">{plantsList}</ul>;
 };
 
 export default AvailablePlants;
