@@ -1,22 +1,13 @@
 import "../styles/App.scss";
 
-import { Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
-
 import apiUser from "../services/api-users";
 import ls from "../services/localstorage";
+import Router from "../routes/Router";
 
-import Home from "./views/Home";
-import LoginPage from "./views/LoginPage";
-import UserProfile from "./views/UserProfile";
-import SignUpPage from "./views/SignUpPage";
-import AvailablePlants from "./views/AvailablePlants";
+import { useEffect, useState } from "react";
 
 function App() {
-  //Routes config.
-  // const { pathname } = useLocation();
-
-  // const dataPath = matchPath('plant/:plantId', pathname)
+  //State variables
   const [userData, setUserData] = useState(
     ls.get("userData") || {
       id: "",
@@ -33,12 +24,12 @@ function App() {
     home: "",
   });
 
+  //Save in Local Storage
   useEffect(() => {
     ls.set("userData", userData);
   }, [userData]);
 
-  //Function for lifting
-
+  //Lifting functions
   const updateUserData = (key, value) => {
     setUserData({ ...userData, [key]: value });
   };
@@ -47,6 +38,8 @@ function App() {
     setInfoMessage({ ...infoMessage, [key]: value });
   };
 
+  //Fetchs
+  //--Login
   const sendLoginToApi = () => {
     apiUser
       .sendLoginToApi({
@@ -61,6 +54,7 @@ function App() {
       });
   };
 
+  //--Sign up
   const sendSingUpToApi = () => {
     apiUser
       .sendSingUpToApi({
@@ -76,6 +70,7 @@ function App() {
       });
   };
 
+  //--Get all plants
   const sendUserPlantsToApi = () => {
     apiUser
       .sendUserPlantsToApi({
@@ -86,55 +81,15 @@ function App() {
 
   return (
     <div className="page">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              id={userData.id}
-              updateUserData={updateUserData}
-              infoMessage={infoMessage.home}
-              updateInfoMessage={updateInfoMessage}
-            />
-          }
-        />
-
-        <Route
-          path="/login"
-          element={
-            <LoginPage
-              userData={userData}
-              updateUserData={updateUserData}
-              sendLoginToApi={sendLoginToApi}
-              loginMessage={infoMessage.login}
-            />
-          }
-        />
-
-        <Route
-          path="/sign-up"
-          element={
-            <SignUpPage
-              userData={userData}
-              updateUserData={updateUserData}
-              sendSingUpToApi={sendSingUpToApi}
-              signUpMessage={infoMessage.signUp}
-            />
-          }
-        />
-
-        <Route
-          path="/user/:userId"
-          element={
-            <UserProfile
-              userData={userData}
-              updateUserData={updateUserData}
-              sendUserPlantsToApi={sendUserPlantsToApi}
-            />
-          }
-        />
-        <Route path="/plants" element={<AvailablePlants />} />
-      </Routes>
+      <Router
+        userData={userData}
+        updateUserData={updateUserData}
+        infoMessage={infoMessage}
+        updateInfoMessage={updateInfoMessage}
+        sendLoginToApi={sendLoginToApi}
+        sendSingUpToApi={sendSingUpToApi}
+        sendUserPlantsToApi={sendUserPlantsToApi}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import apiUser from "../../services/api-users";
 import { useEffect, useState } from "react";
 
-import "../../styles/AvailablePlants.scss";
+import "../../styles/ExplorePlants.scss";
 
 const AvailablePlants = () => {
   const [allPlants, setAllPlants] = useState([]);
