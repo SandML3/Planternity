@@ -5,7 +5,7 @@ import InputText from "../commons/InputText";
 
 import headerImage from "../../images/login_header.jpg";
 import logo from "../../images/logo_color.svg";
-import "../../styles/LoginPage.scss";
+import "../../styles/components/LoginPage.scss";
 
 const LoginPage = ({
   userData,

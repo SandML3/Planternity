@@ -1,8 +1,5 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+@import './core/reset.scss';
+@import './core/variables.scss';
 
 .page {
     width: 100vw;
@@ -12,12 +9,7 @@
     font-family:'Open Sans', sans-serif;
 }
 
-//Variables.
-$title_font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-$common_font: 'Open Sans', sans-serif;
-
-
-//Generales.
+//General styles.
 .link {
     text-decoration: none;
     padding: 1rem;

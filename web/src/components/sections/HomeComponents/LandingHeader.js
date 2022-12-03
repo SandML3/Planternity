@@ -5,7 +5,7 @@ import leavesLeft from "../../../images/leaves_left.png";
 import leavesRight from "../../../images/leaves_right.png";
 import smallLeavesRight from "../../../images/small_leaves_right.png";
 
-import "../../../styles/LandingHeader.scss";
+import "../../../styles/components/LandingHeader.scss";
 import logo from "../../../images/logo_white.svg";
 
 const LandingHeader = ({ isUserLogged, updateUserData }) => {

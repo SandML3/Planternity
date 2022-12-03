@@ -1,4 +1,4 @@
-import "../../styles/SignUpPage.scss";
+import "../../styles/components/SignUpPage.scss";
 import { Link } from "react-router-dom";
 
 import InputText from "../commons/InputText";

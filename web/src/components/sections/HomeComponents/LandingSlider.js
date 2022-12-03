@@ -1,4 +1,4 @@
-import "../../../styles/LandingSlider.scss";
+import "../../../styles/components/LandingSlider.scss";
 
 import dataSliderItem from "../../../data/sliders_items.json";
 
