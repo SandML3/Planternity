@@ -18,11 +18,28 @@ function App() {
     }
   );
 
+  const [allPlants, setAllPlants] = useState([]);
+
+  const [userPlants, setUserPlants] = useState([]);
+
   const [infoMessage, setInfoMessage] = useState({
     login: "",
     signUp: "",
     home: "",
   });
+
+  //
+  useEffect(() => {
+    apiUser
+      .getPlantsFromApi()
+      .then((response) => setAllPlants(response.plants));
+  }, []);
+
+  useEffect(() => {
+    apiUser
+      .getUserPlantsFromApi(userData.id)
+      .then((response) => setUserPlants(response.plants));
+  }, [userData.id]);
 
   //Save in Local Storage
   useEffect(() => {
@@ -36,6 +53,10 @@ function App() {
 
   const updateInfoMessage = (key, value) => {
     setInfoMessage({ ...infoMessage, [key]: value });
+  };
+
+  const updateUserPlants = (newPlant) => {
+    setUserPlants(...userPlants, newPlant);
   };
 
   //Fetchs
@@ -70,13 +91,31 @@ function App() {
       });
   };
 
-  //--Get all plants
-  const sendUserPlantsToApi = () => {
+  //--Get user data
+  const getUserFromApi = (userId) => {
+    //console.log("Pidiendo datos de usuario");
+    apiUser.getUserDataFromApi(userId).then((response) => response);
+  };
+
+  //--Get ALL plants
+  const getPlantsFromApi = () => {
+    apiUser.getPlantsFromApi().then((response) => response);
+  };
+
+  //--Save user plants
+  const sendUserPlantsToApi = (plantId) => {
+    console.log("sending");
     apiUser
       .sendUserPlantsToApi({
-        plants: userData.plants,
+        plantId: parseInt(plantId),
+        userId: userData.id,
       })
       .then((response) => response);
+  };
+
+  //--Get user plants
+  const getUserPlantsFromApi = (userId) => {
+    apiUser.getUserPlantsFromApi(userId).then((response) => response);
   };
 
   return (
@@ -84,11 +123,17 @@ function App() {
       <Router
         userData={userData}
         updateUserData={updateUserData}
+        allPlants={allPlants}
+        userPlants={userPlants}
+        updateUserPlants={updateUserPlants}
         infoMessage={infoMessage}
         updateInfoMessage={updateInfoMessage}
         sendLoginToApi={sendLoginToApi}
         sendSingUpToApi={sendSingUpToApi}
         sendUserPlantsToApi={sendUserPlantsToApi}
+        getUserFromApi={getUserFromApi}
+        getUserPlantsFromApi={getUserPlantsFromApi}
+        getPlantsFromApi={getPlantsFromApi}
       />
     </div>
   );

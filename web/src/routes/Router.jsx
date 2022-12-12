@@ -9,11 +9,17 @@ import ExplorePlants from "../components/views/ExplorePlants";
 const Router = ({
   userData,
   updateUserData,
+  userPlants,
+  updateUserPlants,
+  allPlants,
   infoMessage,
   updateInfoMessage,
   sendLoginToApi,
   sendSingUpToApi,
   sendUserPlantsToApi,
+  getUserFromApi,
+  getPlantsFromApi,
+  getUserPlantsFromApi,
 }) => {
   return (
     <Routes>
@@ -59,11 +65,26 @@ const Router = ({
           <UserProfile
             userData={userData}
             updateUserData={updateUserData}
-            sendUserPlantsToApi={sendUserPlantsToApi}
+            getUserFromApi={getUserFromApi}
+            getUserPlantsFromApi={getUserPlantsFromApi}
+            userPlants={userPlants}
+            allPlants={allPlants}
+            updateUserPlants={updateUserPlants}
           />
         }
       />
-      <Route path="/plants" element={<ExplorePlants />} />
+      <Route
+        path="/user/:userId/plants"
+        element={
+          <ExplorePlants
+            allPlants={allPlants}
+            sendUserPlantsToApi={sendUserPlantsToApi}
+            updateUserPlants={updateUserPlants}
+          />
+        }
+      />
+
+      <Route path="/plant/:plantId" element={"Detalle planta"} />
     </Routes>
   );
 };

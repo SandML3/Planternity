@@ -1,5 +1,6 @@
 .button__slide {
     position: relative;
+    top: 20px;
     border: transparent;
     background-color: transparent;
 }
@@ -7,16 +8,16 @@
 .button {
     width: 0.7rem;
     opacity: 0.8;
-    position: absolute;
-    //top: -75px;
-    top: -90px
 }
 
 .prev {
     left: 0;
+    grid-column: 1;
+    grid-row: 1;
 }
 
 .next {
-    left: calc(100% - 11.2px);
+    grid-column: 3;
+    grid-row: 1;
 }
 

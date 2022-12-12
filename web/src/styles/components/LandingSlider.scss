@@ -4,22 +4,29 @@
     width: 80vw;
     overflow-x: hidden;
     position: relative;
+    
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: 30px 1fr 30px;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .slider {
     display: flex;
     justify-content: flex-start;
     gap: 2.5rem;
+    grid-column: 1;
+    grid-row: 1;
     cursor: grab;
 }
 
 .dots__container {
     display: flex;
+    justify-content: center;
     gap: 1rem;
-    position: relative;
     margin-top: 0.5rem;
-    left: calc(50% - 1.35rem);
-   
 
     .dot {
         width: 0.5rem;
