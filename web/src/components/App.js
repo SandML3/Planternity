@@ -77,10 +77,12 @@ function App() {
         password: userData.password,
       })
       .then((response) => {
-        setUserData({ ...userData, id: response.userId || "" });
-        response.success
-          ? (window.location.href = `/user/${response.userId}`)
-          : setInfoMessage({ ...infoMessage, signUp: response.errorMessage });
+        if (response.success) {
+          setUserData({ ...userData, id: response.userId });
+          return (window.location.href = `/user/${response.userId}`);
+        } else {
+          setInfoMessage({ ...infoMessage, signUp: response.errorMessage });
+        }
       });
   };
 
