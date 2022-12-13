@@ -17,18 +17,21 @@ function App() {
     }
   );
 
-  const [userPlants, setUserPlants] = useState([]);
-
   const [infoMessage, setInfoMessage] = useState({
     login: "",
     signUp: "",
     home: "",
   });
 
+  const [userPlants, setUserPlants] = useState([]);
+
+  //Get userPlants from API only when user id exists.
   useEffect(() => {
-    apiUser
-      .getUserPlantsFromApi(userData.id)
-      .then((response) => setUserPlants(response.plants));
+    if (userData.id) {
+      apiUser
+        .getUserPlantsFromApi(userData.id)
+        .then((response) => setUserPlants(response.plants));
+    }
   }, [userData.id]);
 
   //Save in Local Storage

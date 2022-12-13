@@ -9,7 +9,6 @@ const UserProfile = ({
   getUserFromApi,
   getUserPlantsFromApi,
   userPlants,
-  allPlants,
 
   updateUserPlants,
   updateUserData,
@@ -17,7 +16,7 @@ const UserProfile = ({
 }) => {
   const params = useParams();
 
-  console.log(userPlants);
+  //console.log(userPlants);
 
   const userPlantList = userPlants
     ? userPlants.map((plant) => {
@@ -62,8 +61,6 @@ const UserProfile = ({
     ) : (
       <ul className="main__user__myPlantsList">{userPlantList}</ul>
     );
-
-  //const myPlantsContent = getUserPlantsFromApi();
 
   return (
     <div className="page__user">

@@ -40,6 +40,8 @@
             padding: 0.3rem;
             background: linear-gradient(#ffffffa4, transparent);
             margin-right: 0.5rem;
+            display: flex;
+            align-items: center;
         }
 
         .login {
@@ -52,6 +54,8 @@
             border: 0.3px rgb(184, 197, 196) solid;
             padding: 0.3rem;
             margin-right: 1rem;
+            display: flex;
+            align-items: center;
         }
 
         .closeSesion {
