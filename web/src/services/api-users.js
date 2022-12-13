@@ -26,7 +26,7 @@ const sendSingUpToApi = (data) => {
     body: JSON.stringify(data),
   })
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => data);
 };
 
 //--get user info.

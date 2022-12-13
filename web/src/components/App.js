@@ -53,20 +53,6 @@ function App() {
   };
 
   //Fetchs
-  //--Login
-  const sendLoginToApi = () => {
-    apiUser
-      .sendLoginToApi({
-        email: userData.email,
-        password: userData.password,
-      })
-      .then((response) => {
-        setUserData({ ...userData, id: response.userId || "" });
-        response.success
-          ? (window.location.href = `/user/${response.userId}`)
-          : setInfoMessage({ ...infoMessage, login: response.errorMessage });
-      });
-  };
 
   //--Sign up
   const sendSingUpToApi = () => {
@@ -124,8 +110,7 @@ function App() {
         updateUserPlants={updateUserPlants}
         infoMessage={infoMessage}
         updateInfoMessage={updateInfoMessage}
-        sendLoginToApi={sendLoginToApi}
-        sendSingUpToApi={sendSingUpToApi}
+        sendSingUpToApi={apiUser.sendSingUpToApi}
         sendUserPlantsToApi={sendUserPlantsToApi}
         getUserFromApi={getUserFromApi}
         getUserPlantsFromApi={getUserPlantsFromApi}

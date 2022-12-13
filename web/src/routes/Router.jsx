@@ -55,6 +55,7 @@ const Router = ({
             updateUserData={updateUserData}
             sendSingUpToApi={sendSingUpToApi}
             signUpMessage={infoMessage.signUp}
+            updateInfoMessage={updateInfoMessage}
           />
         }
       />
