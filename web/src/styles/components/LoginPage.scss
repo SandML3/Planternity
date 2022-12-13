@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     font-family:'Open Sans', sans-serif;
+    position: relative;
 
     &__link {
         color: rgb(47, 63, 62);
@@ -19,14 +20,13 @@
   
 
     &__logo {
-        width: 5rem;
+        width: 2.5rem;
         position: absolute;
-        top: 32vh;
+        bottom: 3rem;
         z-index: 3;
         background-color: white;
         padding: 1.5rem;
         border-radius: 3rem;
- 
     }
 
     &__title {

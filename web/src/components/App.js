@@ -14,13 +14,8 @@ function App() {
       name: "",
       email: "",
       password: "",
-      plants: [],
     }
   );
-
-  const [allPlants, setAllPlants] = useState([]);
-
-  const [userPlants, setUserPlants] = useState([]);
 
   const [infoMessage, setInfoMessage] = useState({
     login: "",
@@ -28,17 +23,15 @@ function App() {
     home: "",
   });
 
-  //
-  useEffect(() => {
-    apiUser
-      .getPlantsFromApi()
-      .then((response) => setAllPlants(response.plants));
-  }, []);
+  const [userPlants, setUserPlants] = useState([]);
 
+  //Get userPlants from API only when user id exists.
   useEffect(() => {
-    apiUser
-      .getUserPlantsFromApi(userData.id)
-      .then((response) => setUserPlants(response.plants));
+    if (userData.id) {
+      apiUser
+        .getUserPlantsFromApi(userData.id)
+        .then((response) => setUserPlants(response.plants));
+    }
   }, [userData.id]);
 
   //Save in Local Storage
@@ -59,38 +52,6 @@ function App() {
     setUserPlants(...userPlants, newPlant);
   };
 
-  //Fetchs
-  //--Login
-  const sendLoginToApi = () => {
-    apiUser
-      .sendLoginToApi({
-        email: userData.email,
-        password: userData.password,
-      })
-      .then((response) => {
-        setUserData({ ...userData, id: response.userId || "" });
-        response.success
-          ? (window.location.href = `/user/${response.userId}`)
-          : setInfoMessage({ ...infoMessage, login: response.errorMessage });
-      });
-  };
-
-  //--Sign up
-  const sendSingUpToApi = () => {
-    apiUser
-      .sendSingUpToApi({
-        name: userData.name,
-        email: userData.email,
-        password: userData.password,
-      })
-      .then((response) => {
-        setUserData({ ...userData, id: response.userId || "" });
-        response.success
-          ? (window.location.href = `/user/${response.userId}`)
-          : setInfoMessage({ ...infoMessage, signUp: response.errorMessage });
-      });
-  };
-
   //--Get user data
   const getUserFromApi = (userId) => {
     //console.log("Pidiendo datos de usuario");
@@ -104,13 +65,15 @@ function App() {
 
   //--Save user plants
   const sendUserPlantsToApi = (plantId) => {
-    console.log("sending");
-    apiUser
-      .sendUserPlantsToApi({
-        plantId: parseInt(plantId),
-        userId: userData.id,
-      })
-      .then((response) => response);
+    //console.log("sending");
+    if (!userPlants.find((plant) => plant.id === parseInt(plantId))) {
+      apiUser
+        .sendUserPlantsToApi({
+          plantId: parseInt(plantId),
+          userId: userData.id,
+        })
+        .then((response) => response);
+    }
   };
 
   //--Get user plants
@@ -123,13 +86,12 @@ function App() {
       <Router
         userData={userData}
         updateUserData={updateUserData}
-        allPlants={allPlants}
         userPlants={userPlants}
         updateUserPlants={updateUserPlants}
         infoMessage={infoMessage}
         updateInfoMessage={updateInfoMessage}
-        sendLoginToApi={sendLoginToApi}
-        sendSingUpToApi={sendSingUpToApi}
+        sendLoginToApi={apiUser.sendLoginToApi}
+        sendSingUpToApi={apiUser.sendSingUpToApi}
         sendUserPlantsToApi={sendUserPlantsToApi}
         getUserFromApi={getUserFromApi}
         getUserPlantsFromApi={getUserPlantsFromApi}

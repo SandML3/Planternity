@@ -9,12 +9,24 @@ import logo from "../../images/logo_color.svg";
 const SignUpPage = ({
   userData,
   updateUserData,
-  sendSingUpToApi,
+  updateInfoMessage,
   signUpMessage,
+  sendSingUpToApi,
 }) => {
   const handleClick = (ev) => {
     ev.preventDefault();
-    sendSingUpToApi(userData.name, userData.email, userData.password);
+    sendSingUpToApi({
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+    }).then((response) => {
+      if (response.success) {
+        updateUserData("id", response.userId);
+        return (window.location.href = `/user/${response.userId}`);
+      } else {
+        updateInfoMessage("signUp", response.errorMessage);
+      }
+    });
   };
 
   return (

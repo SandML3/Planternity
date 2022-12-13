@@ -1,14 +1,21 @@
 import "../../styles/components/ExplorePlants.scss";
 
-const AvailablePlants = ({
-  allPlants,
-  sendUserPlantsToApi,
-  updateUserPlants,
-}) => {
+import apiUser from "../../services/api-users";
+
+import { useState, useEffect } from "react";
+
+const ExplorePlants = ({ sendUserPlantsToApi }) => {
+  const [allPlants, setAllPlants] = useState([]);
+
+  useEffect(() => {
+    apiUser
+      .getPlantsFromApi()
+      .then((response) => setAllPlants(response.plants));
+  }, []);
+
   const handleClick = (ev) => {
     const newPlant = ev.currentTarget.id;
-    sendUserPlantsToApi(parseInt(newPlant));
-    updateUserPlants(newPlant);
+    sendUserPlantsToApi(newPlant);
   };
 
   const plantsList = allPlants.map((plant, index) => (
@@ -31,4 +38,4 @@ const AvailablePlants = ({
   return <ul className="plantList">{plantsList}</ul>;
 };
 
-export default AvailablePlants;
+export default ExplorePlants;
