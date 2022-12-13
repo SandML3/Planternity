@@ -127,13 +127,16 @@ app.post("/api/user-plants", (req, res) => {
 
 //Get user plants
 app.get("/api/user/:userId/plants", (req, res) => {
-  console.log("devolviendo plantas del usuario");
+  //console.log("devolviendo plantas del usuario");
 
   const query = db.prepare("SELECT plantId FROM user_info WHERE userId = ?");
   const result = query.all(req.params.userId);
-  console.log(result);
+  const userPlantsIds = result.map((item) => item.plantId);
 
-  res.json(result);
+  const plantsInfoQuery = db.prepare("SELECT * FROM plants WHERE id = ?");
+  const userPlantsInfo = userPlantsIds.map((id) => plantsInfoQuery.get(id));
+
+  res.json(userPlantsInfo);
 });
 
 //Static servers.

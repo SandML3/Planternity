@@ -17,17 +17,10 @@ const UserProfile = ({
 }) => {
   const params = useParams();
 
-  const userPlantsData =
-    userPlants.length !== 0
-      ? allPlants.filter((plant) =>
-          userPlants.map((plantId) => plant.id === plantId)
-        )
-      : null;
+  console.log(userPlants);
 
-  console.log(userPlantsData);
-
-  const userPlantList = userPlantsData
-    ? userPlantsData.map((plant) => {
+  const userPlantList = userPlants
+    ? userPlants.map((plant) => {
         return (
           <li className="main__user__myPlantsList__item" key={plant.id}>
             <Link to={`/plant/${plant.id}`}>
@@ -45,12 +38,11 @@ const UserProfile = ({
 
   useEffect(() => {
     getUserFromApi(params.userId);
-    getUserPlantsFromApi(params.userId);
-  }, [getUserFromApi, getUserPlantsFromApi, params.userId]);
+  }, [getUserFromApi, params.userId]);
 
-  // useEffect(() => {
-  //   getUserPlantsFromApi(params.userId);
-  // }, [userPlants]);
+  useEffect(() => {
+    getUserPlantsFromApi(params.userId);
+  }, [getUserPlantsFromApi, params.userId]);
 
   const myPlantsContent =
     userPlants.length === 0 ? (

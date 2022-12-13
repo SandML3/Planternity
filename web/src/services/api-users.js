@@ -52,7 +52,13 @@ const sendUserPlantsToApi = (data) => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
-  });
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const result =
+        data.changes === 1 ? { success: true } : { success: false };
+      return result;
+    });
 };
 
 // --get all plants.
@@ -80,7 +86,7 @@ const getUserPlantsFromApi = (userId) => {
     .then((data) => {
       const result = {
         success: true,
-        plants: data.map((item) => item.plantId),
+        plants: data,
       };
 
       return result;

@@ -14,11 +14,8 @@ function App() {
       name: "",
       email: "",
       password: "",
-      plants: [],
     }
   );
-
-  const [allPlants, setAllPlants] = useState([]);
 
   const [userPlants, setUserPlants] = useState([]);
 
@@ -27,13 +24,6 @@ function App() {
     signUp: "",
     home: "",
   });
-
-  //
-  useEffect(() => {
-    apiUser
-      .getPlantsFromApi()
-      .then((response) => setAllPlants(response.plants));
-  }, []);
 
   useEffect(() => {
     apiUser
@@ -104,13 +94,15 @@ function App() {
 
   //--Save user plants
   const sendUserPlantsToApi = (plantId) => {
-    console.log("sending");
-    apiUser
-      .sendUserPlantsToApi({
-        plantId: parseInt(plantId),
-        userId: userData.id,
-      })
-      .then((response) => response);
+    //console.log("sending");
+    if (!userPlants.find((plant) => plant.id === parseInt(plantId))) {
+      apiUser
+        .sendUserPlantsToApi({
+          plantId: parseInt(plantId),
+          userId: userData.id,
+        })
+        .then((response) => response);
+    }
   };
 
   //--Get user plants
@@ -123,7 +115,6 @@ function App() {
       <Router
         userData={userData}
         updateUserData={updateUserData}
-        allPlants={allPlants}
         userPlants={userPlants}
         updateUserPlants={updateUserPlants}
         infoMessage={infoMessage}
