@@ -16,6 +16,7 @@ const LoginPage = ({
 }) => {
   const handleClick = (ev) => {
     ev.preventDefault();
+
     sendLoginToApi({
       email: userData.email,
       password: userData.password,
