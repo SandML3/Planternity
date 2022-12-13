@@ -1,6 +1,6 @@
 // login
 const sendLoginToApi = (data) => {
-  //console.log('Se están enviando datos al login:', data);
+  console.log("Se están enviando datos al login:", data);
 
   const bodyParams = {
     email: data.email,
@@ -26,7 +26,7 @@ const sendSingUpToApi = (data) => {
     body: JSON.stringify(data),
   })
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => data);
 };
 
 //--get user info.
@@ -52,7 +52,13 @@ const sendUserPlantsToApi = (data) => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
-  });
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const result =
+        data.changes === 1 ? { success: true } : { success: false };
+      return result;
+    });
 };
 
 // --get all plants.
@@ -80,7 +86,7 @@ const getUserPlantsFromApi = (userId) => {
     .then((data) => {
       const result = {
         success: true,
-        plants: data.map((item) => item.plantId),
+        plants: data,
       };
 
       return result;

@@ -12,10 +12,22 @@ const LoginPage = ({
   updateUserData,
   sendLoginToApi,
   loginMessage,
+  updateInfoMessage,
 }) => {
   const handleClick = (ev) => {
     ev.preventDefault();
-    sendLoginToApi(userData.email, userData.password);
+
+    sendLoginToApi({
+      email: userData.email,
+      password: userData.password,
+    }).then((response) => {
+      if (response.success) {
+        updateUserData("id", response.userId);
+        return (window.location.href = `/user/${response.userId}`);
+      } else {
+        updateInfoMessage("signUp", response.errorMessage);
+      }
+    });
   };
 
   return (
