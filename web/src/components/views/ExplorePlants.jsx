@@ -1,21 +1,22 @@
 import "../../styles/components/ExplorePlants.scss";
 
-import apiUser from "../../services/api-users";
-
 import { useState, useEffect } from "react";
 
-const ExplorePlants = ({ sendUserPlantsToApi }) => {
+const ExplorePlants = ({
+  sendUserPlantsToApi,
+  updateUserData,
+  getPlantsFromApi,
+}) => {
   const [allPlants, setAllPlants] = useState([]);
 
   useEffect(() => {
-    apiUser
-      .getPlantsFromApi()
-      .then((response) => setAllPlants(response.plants));
-  }, []);
+    getPlantsFromApi().then((response) => setAllPlants(response.plants));
+  }, [getPlantsFromApi]);
 
   const handleClick = (ev) => {
     const newPlant = ev.currentTarget.id;
     sendUserPlantsToApi(newPlant);
+    updateUserData("plants", newPlant);
   };
 
   const plantsList = allPlants.map((plant, index) => (

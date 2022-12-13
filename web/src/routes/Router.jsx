@@ -11,7 +11,6 @@ const Router = ({
   updateUserData,
   userPlants,
   updateUserPlants,
-  allPlants,
   infoMessage,
   updateInfoMessage,
   sendLoginToApi,
@@ -70,7 +69,6 @@ const Router = ({
             getUserFromApi={getUserFromApi}
             getUserPlantsFromApi={getUserPlantsFromApi}
             userPlants={userPlants}
-            allPlants={allPlants}
             updateUserPlants={updateUserPlants}
           />
         }
@@ -79,9 +77,9 @@ const Router = ({
         path="/user/:userId/plants"
         element={
           <ExplorePlants
-            allPlants={allPlants}
             sendUserPlantsToApi={sendUserPlantsToApi}
-            updateUserPlants={updateUserPlants}
+            updateUserData={updateUserData}
+            getPlantsFromApi={getPlantsFromApi}
           />
         }
       />

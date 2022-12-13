@@ -1,6 +1,7 @@
 import "../styles/App.scss";
 
 import apiUser from "../services/api-users";
+import apiPlants from "../services/api-plants";
 import ls from "../services/localstorage";
 import Router from "../routes/Router";
 
@@ -14,6 +15,7 @@ function App() {
       name: "",
       email: "",
       password: "",
+      plants: [],
     }
   );
 
@@ -28,11 +30,11 @@ function App() {
   //Get userPlants from API only when user id exists.
   useEffect(() => {
     if (userData.id) {
-      apiUser
+      apiPlants
         .getUserPlantsFromApi(userData.id)
         .then((response) => setUserPlants(response.plants));
     }
-  }, [userData.id]);
+  }, [userData.id, userPlants]);
 
   //Save in Local Storage
   useEffect(() => {
@@ -60,14 +62,14 @@ function App() {
 
   //--Get ALL plants
   const getPlantsFromApi = () => {
-    apiUser.getPlantsFromApi().then((response) => response);
+    apiPlants.getPlantsFromApi().then((response) => response);
   };
 
   //--Save user plants
   const sendUserPlantsToApi = (plantId) => {
     //console.log("sending");
     if (!userPlants.find((plant) => plant.id === parseInt(plantId))) {
-      apiUser
+      apiPlants
         .sendUserPlantsToApi({
           plantId: parseInt(plantId),
           userId: userData.id,
@@ -78,7 +80,7 @@ function App() {
 
   //--Get user plants
   const getUserPlantsFromApi = (userId) => {
-    apiUser.getUserPlantsFromApi(userId).then((response) => response);
+    apiPlants.getUserPlantsFromApi(userId).then((response) => response);
   };
 
   return (
@@ -95,7 +97,7 @@ function App() {
         sendUserPlantsToApi={sendUserPlantsToApi}
         getUserFromApi={getUserFromApi}
         getUserPlantsFromApi={getUserPlantsFromApi}
-        getPlantsFromApi={getPlantsFromApi}
+        getPlantsFromApi={apiPlants.getPlantsFromApi}
       />
     </div>
   );
