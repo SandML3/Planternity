@@ -25,21 +25,17 @@ const db = new Database("./src/database/database.db");
 app.post("/api/users", (req, res) => {
   const query = db.prepare("SELECT * FROM users WHERE email= ?");
   const user = query.get(req.body.email);
-
-  const result = !user
-    ? {
-        success: false,
-        errorMessage: "Este email no está registrado",
-      }
-    : user.password !== req.body.password
-    ? {
-        success: false,
-        errorMessage: "La contraseña introducida es incorrecta",
-      }
-    : {
-        success: true,
-        userId: user.id,
-      };
+  console.log(user);
+  console.log(req.body.email);
+  const result =
+    user && user.password === req.body.password
+      ? { success: true, userId: user.id }
+      : user && user.password !== req.body.password
+      ? {
+          success: false,
+          errorMessage: "La contraseña introducida es incorrecta",
+        }
+      : { success: false, errorMessage: "Este email no está registrado" };
 
   res.json(result);
 });

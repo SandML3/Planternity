@@ -1,6 +1,6 @@
 // login
 const sendLoginToApi = (data) => {
-  //console.log('Se están enviando datos al login:', data);
+  console.log("Se están enviando datos al login:", data);
 
   const bodyParams = {
     email: data.email,

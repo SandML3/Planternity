@@ -42,6 +42,7 @@ const Router = ({
             userData={userData}
             updateUserData={updateUserData}
             sendLoginToApi={sendLoginToApi}
+            updateInfoMessage={updateInfoMessage}
             loginMessage={infoMessage.login}
           />
         }

@@ -52,26 +52,6 @@ function App() {
     setUserPlants(...userPlants, newPlant);
   };
 
-  //Fetchs
-
-  //--Sign up
-  const sendSingUpToApi = () => {
-    apiUser
-      .sendSingUpToApi({
-        name: userData.name,
-        email: userData.email,
-        password: userData.password,
-      })
-      .then((response) => {
-        if (response.success) {
-          setUserData({ ...userData, id: response.userId });
-          return (window.location.href = `/user/${response.userId}`);
-        } else {
-          setInfoMessage({ ...infoMessage, signUp: response.errorMessage });
-        }
-      });
-  };
-
   //--Get user data
   const getUserFromApi = (userId) => {
     //console.log("Pidiendo datos de usuario");
@@ -110,6 +90,7 @@ function App() {
         updateUserPlants={updateUserPlants}
         infoMessage={infoMessage}
         updateInfoMessage={updateInfoMessage}
+        sendLoginToApi={apiUser.sendLoginToApi}
         sendSingUpToApi={apiUser.sendSingUpToApi}
         sendUserPlantsToApi={sendUserPlantsToApi}
         getUserFromApi={getUserFromApi}
