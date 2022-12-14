@@ -6,10 +6,10 @@ import { useEffect } from "react";
 
 const UserProfile = ({
   userData,
-  getUserPlantsFromApi,
   userPlants,
   getUserFromApi,
 
+  getUserPlantsFromApi,
   updateUserPlants,
   updateUserData,
   sendUserPlantsToApi,

@@ -51,8 +51,8 @@ function App() {
     setInfoMessage({ ...infoMessage, [key]: value });
   };
 
-  const updateUserPlants = (userPlantsInfo) => {
-    setUserPlants(userPlantsInfo);
+  const updateUserPlants = (newUserPlant) => {
+    setUserPlants([...userPlants, newUserPlant]);
   };
 
   //--Get user data

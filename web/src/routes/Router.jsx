@@ -82,6 +82,7 @@ const Router = ({
             updateUserData={updateUserData}
             userPlants={userPlants}
             getPlantsFromApi={getPlantsFromApi}
+            updateUserPlants={updateUserPlants}
           />
         }
       />

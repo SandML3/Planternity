@@ -1,45 +1,40 @@
 import "../../styles/components/ExplorePlants.scss";
 
-import { motion } from "framer-motion";
+//import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import InputText from "../commons/InputText";
+import PlantItem from "../commons/PlantItem";
 
 const ExplorePlants = ({
   sendUserPlantsToApi,
   getPlantsFromApi,
   userPlants,
+  updateUserPlants,
 }) => {
+  //State variables
   const [allPlants, setAllPlants] = useState([]);
   const [filterPlants, setFilterPlants] = useState({ name: "" });
-  const [added, setAdded] = useState(false);
+
+  //Lifting fuctions
+  const updateFilterPlants = (key, value) => {
+    setFilterPlants({ ...filterPlants, [key]: value });
+  };
 
   useEffect(() => {
     getPlantsFromApi().then((response) => setAllPlants(response.plants));
   }, [getPlantsFromApi]);
 
-  const updateFilterPlants = (key, value) => {
-    setFilterPlants({ ...filterPlants, [key]: value });
-  };
-
-  const handleClick = (ev) => {
-    const newPlant = ev.currentTarget.id;
-    sendUserPlantsToApi(newPlant);
-    setAdded(!!userPlants.find((plant) => plant.id === parseInt(newPlant)));
-  };
-
   const userId = useParams().userId;
 
-  const Path = (props) => (
-    <motion.path
-      fill="trasparent"
-      strokeWidth="3"
-      stroke="hsla(150, 9%, 34%, 1)"
-      strokeLinecap="round"
-      {...props}
-    />
-  );
+  const updatePlantsData = (newPlantId) => {
+    sendUserPlantsToApi(newPlantId);
+    const newPlant = allPlants.find(
+      (plant) => plant.id === parseInt(newPlantId)
+    );
+    updateUserPlants(newPlant);
+  };
 
   const plantsList = allPlants
     .filter(
@@ -53,48 +48,12 @@ const ExplorePlants = ({
     )
     .map((plant, index) => (
       <li key={index} className="plantList__item">
-        <div onClick={handleClick} id={plant.id}>
-          <svg className="plantList__item__icon">
-            <Path
-              d="M 12 12 L 20 20"
-              animate={added ? "added" : "notAdded"}
-              variants={{
-                notAdded: { x: [0, 0, 0], y: [0, 0, 0], d: "M 12 12 L 20 20" },
-                added: {
-                  x: [0, 100, 30],
-                  y: [0, 10, 0],
-                  d: "M 12 12 L 20 20",
-                },
-              }}
-              transition={{ duration: 0.75 }}
-            />
-            <Path
-              d="M 20 12 L 12 20"
-              variants={{
-                notAdded: {
-                  x: [0, 0, 0],
-                  y: [0, 0, 0],
-                  d: "M 20 12 L 12 20",
-                },
-                added: {
-                  x: [0, 0, 0],
-                  y: [0, 0, 0],
-                  d: "M 20 12 L 12 20",
-                },
-              }}
-              transition={{ duration: 0.75 }}
-            />
-          </svg>
-        </div>
-        <div className="plantImage__container">
-          <img
-            src={require(`../../images/plants/${plant.image}.jpg`)}
-            title={`Foto de ${plant.common_name}`}
-            alt={`Foto de ${plant.common_name}`}
-            className="plantImage"
-          />
-        </div>
-        <p className="plantName">{plant.common_name}</p>
+        <PlantItem
+          userPlants={userPlants}
+          updateUserPlants={updateUserPlants}
+          plant={plant}
+          updatePlantsData={updatePlantsData}
+        />
       </li>
     ));
 
