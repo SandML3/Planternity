@@ -1,43 +1,90 @@
 import "../../styles/components/ExplorePlants.scss";
 
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-const ExplorePlants = ({ sendUserPlantsToApi, getPlantsFromApi }) => {
+import InputText from "../commons/InputText";
+
+const ExplorePlants = ({
+  sendUserPlantsToApi,
+  getPlantsFromApi,
+  userPlants,
+}) => {
   const [allPlants, setAllPlants] = useState([]);
-  const [filterPlants, setFilterPlants] = useState("");
+  const [filterPlants, setFilterPlants] = useState({ name: "" });
+  const [added, setAdded] = useState(false);
 
   useEffect(() => {
     getPlantsFromApi().then((response) => setAllPlants(response.plants));
   }, [getPlantsFromApi]);
 
+  const updateFilterPlants = (key, value) => {
+    setFilterPlants({ ...filterPlants, [key]: value });
+  };
+
   const handleClick = (ev) => {
     const newPlant = ev.currentTarget.id;
     sendUserPlantsToApi(newPlant);
+    setAdded(!!userPlants.find((plant) => plant.id === parseInt(newPlant)));
   };
 
   const userId = useParams().userId;
 
-  const handleWrite = (ev) => {
-    if (ev.key === "Enter") {
-      ev.preventDefault();
-    }
-  };
-
-  const handleChange = (ev) => {
-    setFilterPlants(ev.target.value);
-  };
+  const Path = (props) => (
+    <motion.path
+      fill="trasparent"
+      strokeWidth="3"
+      stroke="hsla(150, 9%, 34%, 1)"
+      strokeLinecap="round"
+      {...props}
+    />
+  );
 
   const plantsList = allPlants
     .filter(
       (plant) =>
-        plant.common_name.toLowerCase().includes(filterPlants.toLowerCase()) ||
-        plant.scientific_name.toLowerCase().includes(filterPlants.toLowerCase())
+        plant.common_name
+          .toLowerCase()
+          .includes(filterPlants.name.toLowerCase()) ||
+        plant.scientific_name
+          .toLowerCase()
+          .includes(filterPlants.name.toLowerCase())
     )
     .map((plant, index) => (
       <li key={index} className="plantList__item">
         <div onClick={handleClick} id={plant.id}>
-          <i className="fa-solid fa-circle-plus"></i>
+          <svg className="plantList__item__icon">
+            <Path
+              d="M 12 12 L 20 20"
+              animate={added ? "added" : "notAdded"}
+              variants={{
+                notAdded: { x: [0, 0, 0], y: [0, 0, 0], d: "M 12 12 L 20 20" },
+                added: {
+                  x: [0, 100, 30],
+                  y: [0, 10, 0],
+                  d: "M 12 12 L 20 20",
+                },
+              }}
+              transition={{ duration: 0.75 }}
+            />
+            <Path
+              d="M 20 12 L 12 20"
+              variants={{
+                notAdded: {
+                  x: [0, 0, 0],
+                  y: [0, 0, 0],
+                  d: "M 20 12 L 12 20",
+                },
+                added: {
+                  x: [0, 0, 0],
+                  y: [0, 0, 0],
+                  d: "M 20 12 L 12 20",
+                },
+              }}
+              transition={{ duration: 0.75 }}
+            />
+          </svg>
         </div>
         <div className="plantImage__container">
           <img
@@ -53,7 +100,6 @@ const ExplorePlants = ({ sendUserPlantsToApi, getPlantsFromApi }) => {
 
   return (
     <div className="explorePlants">
-      {" "}
       <header className="explorePlants__header">
         <nav className="explorePlants__header__nav">
           <Link
@@ -64,14 +110,12 @@ const ExplorePlants = ({ sendUserPlantsToApi, getPlantsFromApi }) => {
           </Link>
         </nav>
         <form className="link explorePlants__header__form">
-          <input
-            className="explorePlants__header__filter"
-            type="text"
+          <InputText
             name="name"
-            id="name"
-            value={filterPlants}
-            onChange={handleChange}
-            onKeyDown={handleWrite}
+            type="text"
+            value={filterPlants.name}
+            updateStateVar={updateFilterPlants}
+            labelText=""
             placeholder="Buscar plantas por nombre"
           />
         </form>

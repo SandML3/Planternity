@@ -54,8 +54,8 @@ const LoginPage = ({
             <InputText
               name="email"
               type="text"
-              user={userData.email}
-              updateUserData={updateUserData}
+              value={userData.email}
+              updateStateVar={updateUserData}
               labelText="Dirección de correo electrónico"
               placeholder="Dirección de correo"
             />
@@ -65,8 +65,8 @@ const LoginPage = ({
             <InputText
               name="password"
               type="password"
-              user={userData.password}
-              updateUserData={updateUserData}
+              value={userData.password}
+              updateStateVar={updateUserData}
               labelText="Contraseña"
               placeholder="Contraseña"
             />

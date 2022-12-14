@@ -54,8 +54,8 @@ const SignUpPage = ({
             <InputText
               name="name"
               type="text"
-              user={userData.name}
-              updateUserData={updateUserData}
+              value={userData.name}
+              updateStateVar={updateUserData}
               labelText="Nombre de usuario"
               placeholder="Nombre"
             />
@@ -65,8 +65,8 @@ const SignUpPage = ({
             <InputText
               name="email"
               type="text"
-              user={userData.email}
-              updateUserData={updateUserData}
+              value={userData.email}
+              updateStateVar={updateUserData}
               labelText="Dirección de correo electrónico"
               placeholder="Dirección de correo"
             />
@@ -76,8 +76,8 @@ const SignUpPage = ({
             <InputText
               name="password"
               type="password"
-              user={userData.password}
-              updateUserData={updateUserData}
+              value={userData.password}
+              updateStateVar={updateUserData}
               labelText="Contraseña"
               placeholder="Contraseña"
             />

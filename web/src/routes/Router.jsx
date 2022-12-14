@@ -80,6 +80,7 @@ const Router = ({
           <ExplorePlants
             sendUserPlantsToApi={sendUserPlantsToApi}
             updateUserData={updateUserData}
+            userPlants={userPlants}
             getPlantsFromApi={getPlantsFromApi}
           />
         }

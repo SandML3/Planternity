@@ -6,7 +6,7 @@ import ls from "../services/localstorage";
 import Router from "../routes/Router";
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 
 function App() {
   //State variables
