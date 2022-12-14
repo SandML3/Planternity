@@ -6,23 +6,21 @@ import { useEffect } from "react";
 
 const UserProfile = ({
   userData,
-  getUserFromApi,
-  getUserPlantsFromApi,
   userPlants,
+  getUserFromApi,
 
+  getUserPlantsFromApi,
   updateUserPlants,
   updateUserData,
   sendUserPlantsToApi,
 }) => {
   const params = useParams();
 
-  //console.log(userPlants);
-
   const userPlantList = userPlants
     ? userPlants.map((plant) => {
         return (
           <li className="main__user__myPlantsList__item" key={plant.id}>
-            <Link to={`/plant/${plant.id}`}>
+            <Link to={`/user/${params.userId}/plant/${plant.id}`}>
               <img
                 src={require(`../../images/plants/${plant.image}.jpg`)}
                 title={`Foto de ${plant.common_name}`}

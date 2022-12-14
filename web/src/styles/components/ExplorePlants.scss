@@ -1,47 +1,93 @@
 @import '../core/variables.scss';
 
-.plantList {
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
+.explorePlants {
     background-color: rgb(221, 233, 232);
-    padding: 2rem;
     min-height: 100%;
-
-    &__item {
-        list-style: none;
-        display: flex;
-        gap: 0.5rem;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        margin: 0.5rem;
-        font-weight: 500;
-        width: 8.2rem;
-        position: relative;
     
-        .plantImage {
-            width: 100%;
-            
-            &__container {
-                overflow: hidden;
-                height: 10rem;
-                width: 8rem;
-                border-radius: 10px;
-            }
+    &__header {
+        &__nav {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        &__link {
+            color: $main_color;
         }
 
-        .plantName {
-            width: 90%;
-            font-size: 0.9rem;
+        &__form {
+            margin-left: 1rem;
         }
 
-        .fa-solid {
-            position: absolute;
-            right: -0.5rem;
-            font-size: 1.5rem;
-            color: $main_color; 
+        &__filter{
+            border-radius: 1rem;
+            border: transparent;
+            padding: 0.5rem;
+            padding-left: 1rem;
+            background-color: rgba(220, 220, 220, 0.799);
         }
     }
+
+    &__main {
+
+      &__plantList {
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 2rem;
+        padding-top: 1rem;
+       
+
+        .plantList__item {
+            list-style: none;
+            display: flex;
+            gap: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            margin: 0.5rem;
+            font-weight: 500;
+            width: 8.2rem;
+            position: relative;
+
+            &__icon {
+                //background-color: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(5px);
+                height: 2rem;
+                width: 2rem;
+                position: absolute;
+                right: -0.5rem;
+                border-radius: 1rem;
+                border: 2 px solid white;
+                filter: drop-shadow(0.4rem 0.4rem 0.40rem hsla(150, 9%, 34%, 0.3));
+                box-shadow: 1px 5px 20px 1px rgba(0,0,0,0.1), -1px -25px 43px -14px rgba(255, 255, 255, 0.3) inset
+            }
+    
+            .plantImage {
+                width: 100%;
+                
+                &__container {
+                    overflow: hidden;
+                    height: 10rem;
+                    width: 8rem;
+                    border-radius: 10px;
+                }
+            }
+
+            .plantName {
+                width: 90%;
+                font-size: 0.9rem;
+            }
+
+            .fa-solid {
+                position: absolute;
+                right: -0.5rem;
+                font-size: 1.5rem;
+                color: $main_color; 
+            }
+        }
+}  
+    }
 }
+

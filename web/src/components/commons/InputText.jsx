@@ -2,15 +2,16 @@ import "../../styles/components/InputText.scss";
 
 const InputText = ({
   name,
-  user,
-  updateUserData,
+  value,
+  updateStateVar,
   labelText,
   placeholder,
   type,
 }) => {
   const handleChange = (ev) => {
-    updateUserData(ev.target.name, ev.target.value);
+    updateStateVar(ev.target.name, ev.target.value);
   };
+
   const handleWrite = (ev) => {
     if (ev.key === "Enter") {
       ev.preventDefault();
@@ -28,7 +29,7 @@ const InputText = ({
         type={type}
         name={name}
         id={name}
-        value={user}
+        value={value}
         onChange={handleChange}
         onKeyDown={handleWrite}
         placeholder={placeholder}

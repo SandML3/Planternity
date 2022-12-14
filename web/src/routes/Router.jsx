@@ -5,13 +5,13 @@ import LoginPage from "../components/views/LoginPage";
 import UserProfile from "../components/views/UserProfile";
 import SignUpPage from "../components/views/SignUpPage";
 import ExplorePlants from "../components/views/ExplorePlants";
+import PlantDetails from "../components/views/PlantDetails";
 
 const Router = ({
   userData,
   updateUserData,
   userPlants,
   updateUserPlants,
-  allPlants,
   infoMessage,
   updateInfoMessage,
   sendLoginToApi,
@@ -70,7 +70,6 @@ const Router = ({
             getUserFromApi={getUserFromApi}
             getUserPlantsFromApi={getUserPlantsFromApi}
             userPlants={userPlants}
-            allPlants={allPlants}
             updateUserPlants={updateUserPlants}
           />
         }
@@ -79,14 +78,19 @@ const Router = ({
         path="/user/:userId/plants"
         element={
           <ExplorePlants
-            allPlants={allPlants}
             sendUserPlantsToApi={sendUserPlantsToApi}
+            updateUserData={updateUserData}
+            userPlants={userPlants}
+            getPlantsFromApi={getPlantsFromApi}
             updateUserPlants={updateUserPlants}
           />
         }
       />
 
-      <Route path="/plant/:plantId" element={"Detalle planta"} />
+      <Route
+        path="/user/:userId/plant/:plantId"
+        element={<PlantDetails userPlants={userPlants} />}
+      />
     </Routes>
   );
 };
