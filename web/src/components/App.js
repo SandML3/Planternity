@@ -6,6 +6,7 @@ import ls from "../services/localstorage";
 import Router from "../routes/Router";
 
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function App() {
   //State variables
@@ -34,7 +35,7 @@ function App() {
         .getUserPlantsFromApi(userData.id)
         .then((response) => setUserPlants(response.plants));
     }
-  }, [userData.id, userPlants]);
+  }, [userData.id]);
 
   //Save in Local Storage
   useEffect(() => {
@@ -50,8 +51,8 @@ function App() {
     setInfoMessage({ ...infoMessage, [key]: value });
   };
 
-  const updateUserPlants = (newPlant) => {
-    setUserPlants(...userPlants, newPlant);
+  const updateUserPlants = (userPlantsInfo) => {
+    setUserPlants(userPlantsInfo);
   };
 
   //--Get user data
@@ -60,14 +61,10 @@ function App() {
     apiUser.getUserDataFromApi(userId).then((response) => response);
   };
 
-  //--Get ALL plants
-  const getPlantsFromApi = () => {
-    apiPlants.getPlantsFromApi().then((response) => response);
-  };
-
   //--Save user plants
   const sendUserPlantsToApi = (plantId) => {
     //console.log("sending");
+
     if (!userPlants.find((plant) => plant.id === parseInt(plantId))) {
       apiPlants
         .sendUserPlantsToApi({
@@ -79,9 +76,9 @@ function App() {
   };
 
   //--Get user plants
-  const getUserPlantsFromApi = (userId) => {
-    apiPlants.getUserPlantsFromApi(userId).then((response) => response);
-  };
+  // const getUserPlantsFromApi = (userId) => {
+  //   apiPlants.getUserPlantsFromApi(userId).then((response) => response);
+  // };
 
   return (
     <div className="page">
@@ -96,7 +93,7 @@ function App() {
         sendSingUpToApi={apiUser.sendSingUpToApi}
         sendUserPlantsToApi={sendUserPlantsToApi}
         getUserFromApi={getUserFromApi}
-        getUserPlantsFromApi={getUserPlantsFromApi}
+        getUserPlantsFromApi={apiPlants.getUserPlantsFromApi}
         getPlantsFromApi={apiPlants.getPlantsFromApi}
       />
     </div>

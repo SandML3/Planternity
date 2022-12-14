@@ -5,6 +5,7 @@ import LoginPage from "../components/views/LoginPage";
 import UserProfile from "../components/views/UserProfile";
 import SignUpPage from "../components/views/SignUpPage";
 import ExplorePlants from "../components/views/ExplorePlants";
+import PlantDetails from "../components/views/PlantDetails";
 
 const Router = ({
   userData,
@@ -84,7 +85,10 @@ const Router = ({
         }
       />
 
-      <Route path="/plant/:plantId" element={"Detalle planta"} />
+      <Route
+        path="/user/:userId/plant/:plantId"
+        element={<PlantDetails userPlants={userPlants} />}
+      />
     </Routes>
   );
 };
