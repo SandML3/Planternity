@@ -18,6 +18,7 @@ const Router = ({
   sendSingUpToApi,
   sendUserPlantsToApi,
   getUserDataFromApi,
+  getUserPlantsFromApi,
   getPlantsFromApi,
   saveInLocalStorage,
 }) => {
@@ -71,13 +72,15 @@ const Router = ({
             saveInLocalStorage={saveInLocalStorage}
             userPlants={userPlants}
             updateUserPlants={updateUserPlants}
+            getUserPlantsFromApi={getUserPlantsFromApi}
           />
         }
       />
       <Route
-        path="/user/:userId/plants"
+        path="/plants"
         element={
           <ExplorePlants
+            userData={userData}
             sendUserPlantsToApi={sendUserPlantsToApi}
             updateUserData={updateUserData}
             userPlants={userPlants}

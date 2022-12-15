@@ -7,10 +7,15 @@ const PlantItem = ({ userPlants, plant, updatePlantsData }) => {
 
   const handleClick = (ev) => {
     const newPlantId = ev.currentTarget.id;
-    updatePlantsData(newPlantId);
-    setIsUserPlant(
-      !!userPlants.find((plant) => plant.id === parseInt(newPlantId))
-    );
+
+    if (!userPlants.find((plant) => plant.id === parseInt(newPlantId))) {
+      updatePlantsData(newPlantId);
+      setIsUserPlant(true);
+    }
+
+    // setIsUserPlant(
+    //   !!userPlants.find((plant) => plant.id === parseInt(newPlantId))
+    // );
   };
 
   const Path = (props) => (
@@ -23,7 +28,11 @@ const PlantItem = ({ userPlants, plant, updatePlantsData }) => {
     />
   );
   return (
-    <div onClick={handleClick} id={plant.id} title="Añadir">
+    <div
+      onClick={handleClick}
+      id={plant.id}
+      title={isUserPlant ? "Eliminar" : "Añadir"}
+    >
       <svg className="plantList__item__icon">
         <Path
           d="M 15 12 L 15 22"

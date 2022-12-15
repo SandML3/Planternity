@@ -26,26 +26,11 @@ function App() {
     home: "",
   });
 
-  //Get userPlants from API only when user id exists.
-  useEffect(() => {
-    if (userData.id && userPlants.length === 0) {
-      apiPlants.getUserPlantsFromApi(userData.id).then((response) => {
-        setUserPlants(response.plants);
-      });
-    }
-  }, [userData.id, userPlants.length]);
-
   //Save in Local Storage
   useEffect(() => {
     ls.set("userData", userData);
     ls.set("userPlants", userPlants);
   }, [userData, userPlants]);
-
-  // useEffect(() => {
-  //   if (!userData.id) {
-  //     //window.location.href = `/`;
-  //   }
-  // }, [userData.id]);
 
   //Lifting functions
   const updateUserData = (key, value) => {
@@ -93,7 +78,7 @@ function App() {
         sendSingUpToApi={apiUser.sendSingUpToApi}
         sendUserPlantsToApi={sendUserPlantsToApi}
         getUserDataFromApi={apiUser.getUserDataFromApi}
-        //getUserPlantsFromApi={apiPlants.getUserPlantsFromApi}
+        getUserPlantsFromApi={apiPlants.getUserPlantsFromApi}
         getPlantsFromApi={apiPlants.getPlantsFromApi}
         saveInLocalStorage={ls.set}
       />

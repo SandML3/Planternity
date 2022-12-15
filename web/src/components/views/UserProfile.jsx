@@ -7,9 +7,9 @@ import { useEffect } from "react";
 const UserProfile = ({
   userData,
   userPlants,
+
   getUserDataFromApi,
   saveInLocalStorage,
-
   getUserPlantsFromApi,
   updateUserPlants,
   updateUserData,
@@ -40,12 +40,21 @@ const UserProfile = ({
       Object.values(userData).some((value) => value === "")
     ) {
       getUserDataFromApi(params.userId).then((response) => {
-        console.log(response.userData);
-        console.log(Object.keys(response.userData));
         saveInLocalStorage("userData", response.userData);
       });
+
+      getUserPlantsFromApi(params.userId).then((response) => {
+        console.log(response.plants, params.userId);
+        saveInLocalStorage("userPlants", response.plants);
+      });
     }
-  }, [getUserDataFromApi, params.userId, saveInLocalStorage, userData]);
+  }, [
+    getUserDataFromApi,
+    getUserPlantsFromApi,
+    params.userId,
+    saveInLocalStorage,
+    userData,
+  ]);
 
   const myPlantsContent =
     userPlants.length === 0 ? (
@@ -54,10 +63,7 @@ const UserProfile = ({
           <span className="bolder">¿Todavía no has añadido plantitas?</span>{" "}
           ¡Eso hay que solucionarlo!
         </p>
-        <Link
-          to={`/user/${userData.id}/plants`}
-          className="main__user__myPlantsList__link link"
-        >
+        <Link to={`/plants`} className="main__user__myPlantsList__link link">
           {" "}
           Añade tu primera planta{" "}
         </Link>
@@ -84,10 +90,7 @@ const UserProfile = ({
 
         <ul className="main__user__options">
           <li className="main__user__options__item">
-            <Link
-              to={`/user/${userData.id}/plants`}
-              className="itemContain link"
-            >
+            <Link to={`/plants`} className="itemContain link">
               <i className="fa-solid fa-magnifying-glass icon"></i>
               Buscar
             </Link>
