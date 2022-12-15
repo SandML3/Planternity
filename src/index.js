@@ -69,7 +69,7 @@ app.post("/api/sign-up", (req, res) => {
 
 //Get user info
 app.get("/api/user/:userId", (req, res) => {
-  //console.log("devolviendo datos usuario");
+  console.log("devolviendo datos usuario");
 
   const query = db.prepare("SELECT * FROM users WHERE id = ?");
   const result = query.get(req.params.userId);

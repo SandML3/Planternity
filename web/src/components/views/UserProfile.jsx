@@ -7,7 +7,8 @@ import { useEffect } from "react";
 const UserProfile = ({
   userData,
   userPlants,
-  getUserFromApi,
+  getUserDataFromApi,
+  saveInLocalStorage,
 
   getUserPlantsFromApi,
   updateUserPlants,
@@ -34,19 +35,24 @@ const UserProfile = ({
     : null;
 
   useEffect(() => {
-    getUserFromApi(params.userId);
-  }, [getUserFromApi, params.userId]);
-
-  useEffect(() => {
-    getUserPlantsFromApi(params.userId);
-  }, [getUserPlantsFromApi, params.userId]);
+    if (
+      params.userId &&
+      Object.values(userData).some((value) => value === "")
+    ) {
+      getUserDataFromApi(params.userId).then((response) => {
+        console.log(response.userData);
+        console.log(Object.keys(response.userData));
+        saveInLocalStorage("userData", response.userData);
+      });
+    }
+  }, [getUserDataFromApi, params.userId, saveInLocalStorage, userData]);
 
   const myPlantsContent =
     userPlants.length === 0 ? (
       <div className="main__user__myPlantsList__contain">
         <p className="main__user__myPlantsList__text">
-          <span className="bolder">¿Todavía has añadido plantitas?</span> ¡Eso
-          hay que solucionarlo!
+          <span className="bolder">¿Todavía no has añadido plantitas?</span>{" "}
+          ¡Eso hay que solucionarlo!
         </p>
         <Link
           to={`/user/${userData.id}/plants`}

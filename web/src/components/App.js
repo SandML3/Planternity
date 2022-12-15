@@ -6,7 +6,6 @@ import ls from "../services/localstorage";
 import Router from "../routes/Router";
 
 import { useEffect, useState } from "react";
-//import { useParams } from "react-router-dom";
 
 function App() {
   //State variables
@@ -16,9 +15,10 @@ function App() {
       name: "",
       email: "",
       password: "",
-      plants: [],
     }
   );
+
+  const [userPlants, setUserPlants] = useState(ls.get("userPlants") || []);
 
   const [infoMessage, setInfoMessage] = useState({
     login: "",
@@ -26,24 +26,30 @@ function App() {
     home: "",
   });
 
-  const [userPlants, setUserPlants] = useState([]);
-
   //Get userPlants from API only when user id exists.
   useEffect(() => {
-    if (userData.id) {
-      apiPlants
-        .getUserPlantsFromApi(userData.id)
-        .then((response) => setUserPlants(response.plants));
+    if (userData.id && userPlants.length === 0) {
+      apiPlants.getUserPlantsFromApi(userData.id).then((response) => {
+        setUserPlants(response.plants);
+      });
     }
-  }, [userData.id]);
+  }, [userData.id, userPlants.length]);
 
   //Save in Local Storage
   useEffect(() => {
     ls.set("userData", userData);
-  }, [userData]);
+    ls.set("userPlants", userPlants);
+  }, [userData, userPlants]);
+
+  // useEffect(() => {
+  //   if (!userData.id) {
+  //     //window.location.href = `/`;
+  //   }
+  // }, [userData.id]);
 
   //Lifting functions
   const updateUserData = (key, value) => {
+    console.log(key, value);
     setUserData({ ...userData, [key]: value });
   };
 
@@ -53,12 +59,6 @@ function App() {
 
   const updateUserPlants = (newUserPlant) => {
     setUserPlants([...userPlants, newUserPlant]);
-  };
-
-  //--Get user data
-  const getUserFromApi = (userId) => {
-    //console.log("Pidiendo datos de usuario");
-    apiUser.getUserDataFromApi(userId).then((response) => response);
   };
 
   //--Save user plants
@@ -92,9 +92,10 @@ function App() {
         sendLoginToApi={apiUser.sendLoginToApi}
         sendSingUpToApi={apiUser.sendSingUpToApi}
         sendUserPlantsToApi={sendUserPlantsToApi}
-        getUserFromApi={getUserFromApi}
-        getUserPlantsFromApi={apiPlants.getUserPlantsFromApi}
+        getUserDataFromApi={apiUser.getUserDataFromApi}
+        //getUserPlantsFromApi={apiPlants.getUserPlantsFromApi}
         getPlantsFromApi={apiPlants.getPlantsFromApi}
+        saveInLocalStorage={ls.set}
       />
     </div>
   );

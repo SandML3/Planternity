@@ -17,9 +17,9 @@ const Router = ({
   sendLoginToApi,
   sendSingUpToApi,
   sendUserPlantsToApi,
-  getUserFromApi,
+  getUserDataFromApi,
   getPlantsFromApi,
-  getUserPlantsFromApi,
+  saveInLocalStorage,
 }) => {
   return (
     <Routes>
@@ -67,8 +67,8 @@ const Router = ({
           <UserProfile
             userData={userData}
             updateUserData={updateUserData}
-            getUserFromApi={getUserFromApi}
-            getUserPlantsFromApi={getUserPlantsFromApi}
+            getUserDataFromApi={getUserDataFromApi}
+            saveInLocalStorage={saveInLocalStorage}
             userPlants={userPlants}
             updateUserPlants={updateUserPlants}
           />
