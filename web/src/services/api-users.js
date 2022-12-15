@@ -31,7 +31,7 @@ const sendSingUpToApi = (data) => {
 
 //--get user info.
 const getUserDataFromApi = (userId) => {
-  //console.log("obteniendo info usuario");
+  //console.log("obteniendo info usuario", userId);
   return fetch(`//localhost:4000/api/user/${userId}`)
     .then((response) => response.json())
     .then((data) => {

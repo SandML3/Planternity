@@ -69,7 +69,7 @@ app.post("/api/sign-up", (req, res) => {
 
 //Get user info
 app.get("/api/user/:userId", (req, res) => {
-  //console.log("devolviendo datos usuario");
+  console.log("devolviendo datos usuario");
 
   const query = db.prepare("SELECT * FROM users WHERE id = ?");
   const result = query.get(req.params.userId);
@@ -123,7 +123,7 @@ app.post("/api/user-plants", (req, res) => {
 
 //Get user plants
 app.get("/api/user/:userId/plants", (req, res) => {
-  //console.log("devolviendo plantas del usuario");
+  console.log("devolviendo plantas del usuario");
 
   const query = db.prepare("SELECT plantId FROM user_info WHERE userId = ?");
   const result = query.all(req.params.userId);

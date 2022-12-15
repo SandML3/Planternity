@@ -2,56 +2,85 @@ import "../../styles/components/UserProfile.scss";
 import logo from "../../images/logo_color.svg";
 
 import { Link, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+
+import InputText from "../commons/InputText";
 
 const UserProfile = ({
   userData,
   userPlants,
-  getUserFromApi,
 
+  getUserDataFromApi,
+  saveInLocalStorage,
   getUserPlantsFromApi,
   updateUserPlants,
   updateUserData,
   sendUserPlantsToApi,
 }) => {
+  const [filterPlants, setFilterPlants] = useState({ name: "" });
   const params = useParams();
 
+  const updateFilterValue = (key, value) => {
+    setFilterPlants({ ...filterPlants, [key]: value });
+  };
+
+  useEffect(() => {
+    if (
+      params.userId &&
+      Object.values(userData).some((value) => value === "")
+    ) {
+      getUserDataFromApi(params.userId).then((response) => {
+        saveInLocalStorage("userData", response.userData);
+      });
+
+      getUserPlantsFromApi(params.userId).then((response) => {
+        console.log(response.plants, params.userId);
+        saveInLocalStorage("userPlants", response.plants);
+      });
+    }
+  }, [
+    getUserDataFromApi,
+    getUserPlantsFromApi,
+    params.userId,
+    saveInLocalStorage,
+    userData,
+  ]);
+
   const userPlantList = userPlants
-    ? userPlants.map((plant) => {
-        return (
-          <li className="main__user__myPlantsList__item" key={plant.id}>
-            <Link to={`/user/${params.userId}/plant/${plant.id}`}>
-              <img
-                src={require(`../../images/plants/${plant.image}.jpg`)}
-                title={`Foto de ${plant.common_name}`}
-                alt={`Foto de ${plant.common_name}`}
-                className="main__user__myPlantsList__image"
-              />
-            </Link>
-          </li>
-        );
-      })
+    ? userPlants
+        .filter(
+          (plant) =>
+            plant.common_name
+              .toLowerCase()
+              .includes(filterPlants.name.toLowerCase()) ||
+            plant.scientific_name
+              .toLowerCase()
+              .includes(filterPlants.name.toLowerCase())
+        )
+        .map((plant) => {
+          return (
+            <li className="main__user__myPlantsList__item" key={plant.id}>
+              <Link to={`/user/${params.userId}/plant/${plant.id}`}>
+                <img
+                  src={require(`../../images/plants/${plant.image}.jpg`)}
+                  title={`Foto de ${plant.common_name}`}
+                  alt={`Foto de ${plant.common_name}`}
+                  className="main__user__myPlantsList__image"
+                />
+              </Link>
+            </li>
+          );
+        })
     : null;
-
-  useEffect(() => {
-    getUserFromApi(params.userId);
-  }, [getUserFromApi, params.userId]);
-
-  useEffect(() => {
-    getUserPlantsFromApi(params.userId);
-  }, [getUserPlantsFromApi, params.userId]);
 
   const myPlantsContent =
     userPlants.length === 0 ? (
       <div className="main__user__myPlantsList__contain">
         <p className="main__user__myPlantsList__text">
-          <span className="bolder">¿Todavía has añadido plantitas?</span> ¡Eso
-          hay que solucionarlo!
+          <span className="bolder">¿Todavía no has añadido plantitas?</span>{" "}
+          ¡Eso hay que solucionarlo!
         </p>
-        <Link
-          to={`/user/${userData.id}/plants`}
-          className="main__user__myPlantsList__link link"
-        >
+        <Link to={`/plants`} className="main__user__myPlantsList__link link">
           {" "}
           Añade tu primera planta{" "}
         </Link>
@@ -73,15 +102,22 @@ const UserProfile = ({
       <main className="main__user">
         <section className="main__user__myPlants">
           <h2 className="main__user__myPlants__title">Mis plantas</h2>
+          <form className="main__user__myPlants__input">
+            <InputText
+              placeholder="Buscar entre mis plantas"
+              name="name"
+              value={filterPlants.name}
+              updateStateVar={updateFilterValue}
+              labelText=""
+              type="text"
+            />
+          </form>
           {myPlantsContent}
         </section>
 
         <ul className="main__user__options">
           <li className="main__user__options__item">
-            <Link
-              to={`/user/${userData.id}/plants`}
-              className="itemContain link"
-            >
+            <Link to={`/plants`} className="itemContain link">
               <i className="fa-solid fa-magnifying-glass icon"></i>
               Buscar
             </Link>

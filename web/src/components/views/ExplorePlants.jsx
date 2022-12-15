@@ -2,12 +2,13 @@ import "../../styles/components/ExplorePlants.scss";
 
 //import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import InputText from "../commons/InputText";
 import PlantItem from "../commons/PlantItem";
 
 const ExplorePlants = ({
+  userData,
   sendUserPlantsToApi,
   getPlantsFromApi,
   userPlants,
@@ -26,8 +27,7 @@ const ExplorePlants = ({
     getPlantsFromApi().then((response) => setAllPlants(response.plants));
   }, [getPlantsFromApi]);
 
-  const userId = useParams().userId;
-
+  //Send new plant to api and update the state variable
   const updatePlantsData = (newPlantId) => {
     sendUserPlantsToApi(newPlantId);
     const newPlant = allPlants.find(
@@ -62,7 +62,7 @@ const ExplorePlants = ({
       <header className="explorePlants__header">
         <nav className="explorePlants__header__nav">
           <Link
-            to={`/user/${userId}`}
+            to={`/user/${userData.id}`}
             className="link explorePlants__header__link"
           >
             Volver
