@@ -57,6 +57,7 @@
                 height: 2rem;
                 width: 2rem;
                 position: absolute;
+                z-index: 2;
                 right: -0.5rem;
                 border-radius: 1rem;
                 border: 2 px solid white;
@@ -72,19 +73,22 @@
                     height: 10rem;
                     width: 8rem;
                     border-radius: 10px;
+                    filter: grayscale(40%);
+
+                    &--added {
+                        overflow: hidden;
+                        height: 8rem;
+                        width: 8rem;
+                        border-radius: 10px;
+                        scale: 0.8;
+                        filter: grayscale(0%);
+                    }
                 }
             }
 
             .plantName {
                 width: 90%;
                 font-size: 0.9rem;
-            }
-
-            .fa-solid {
-                position: absolute;
-                right: -0.5rem;
-                font-size: 1.5rem;
-                color: $main_color; 
             }
         }
 }  

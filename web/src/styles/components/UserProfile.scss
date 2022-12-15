@@ -22,6 +22,8 @@
         margin: 1rem 0em;
     }
 
+   
+
     &__text {
         font-size: 0.9rem;
         color: rgb(61, 75, 71);
@@ -44,14 +46,23 @@
         
 
         &__myPlants {
+             display: flex;
+             flex-direction: column;
             
            &__title {
             font-weight: 500;
             margin: 1rem 0rem;
            }
+
+            &__input {
+                align-self: center;
+                margin-bottom: 1rem;
+                
+            }
         }
 
         &__myPlantsList {
+            align-self: center;
             display: flex;
             flex-wrap: wrap;
 
