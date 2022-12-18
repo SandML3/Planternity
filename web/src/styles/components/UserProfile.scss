@@ -1,7 +1,7 @@
 @import '../core/variables.scss';
 
 .page__user {
-    background-color:  rgb(219, 227, 225);
+    //background-color: $background_color;
     padding: 2rem;
     min-height: 100vh;
 }
@@ -21,8 +21,6 @@
         font-weight: 700;
         margin: 1rem 0em;
     }
-
-   
 
     &__text {
         font-size: 0.9rem;
@@ -56,8 +54,7 @@
 
             &__input {
                 align-self: center;
-                margin-bottom: 1rem;
-                
+                margin-bottom: 1rem;   
             }
         }
 
@@ -65,38 +62,68 @@
             align-self: center;
             display: flex;
             flex-wrap: wrap;
-            min-height: 30vh;
-           
+            min-height: 40vh;
+
 
             &__contain {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                min-height: 10rem;
-                background-color: rgba(255, 255, 255, 0.798);
                 border-radius: 1rem;
                 text-align: center;
                 padding: 1.5rem;
-                line-height: 1.2rem;
+                
+
                 
             }
 
             &__link {
                 color: $main_color;
-                
             }
 
             &__item {
-                border-radius: 5px;
-                overflow: hidden;
+                border-radius: 10%;
                 margin: 0.5rem;
+                height: 18vh;
+                width: 13vh;
+                //overflow: hidden;
+                position: relative;
+                
+
+                
+            }
+
+            &__imageWrapper {
+                height: 13vh;
+                width: 13vh;
+                overflow: hidden;
+                position: relative;
+                border-radius: 10%;
                 
             }
 
             &__image {
-                width: 4rem;
-                height: 5rem;
+                width: 100%;
+                position: relative;
+                bottom: 20px;
+            }
+
+            &__name {
+                color: #3a4645;
+                position: absolute;
+                background-color: rgba(232, 238, 230, 0.4);
+                border: rgba(255, 255, 255, 0.4) 1px solid;
+                font-size: 0.7rem;
+                width: 11vh;
+                backdrop-filter: blur(2px);
+                //height: 50px;
+                border-radius: 5px;
+                bottom: 20px;
+                text-align: center;
+                padding: 0.5rem;
+                font-weight: 600;
+                //right: -5px;
             }
         }
 

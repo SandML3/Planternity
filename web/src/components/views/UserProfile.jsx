@@ -61,12 +61,17 @@ const UserProfile = ({
           return (
             <li className="main__user__myPlantsList__item" key={plant.id}>
               <Link to={`/user/${params.userId}/plant/${plant.id}`}>
-                <img
-                  src={require(`../../images/plants/${plant.image}.jpg`)}
-                  title={`Foto de ${plant.common_name}`}
-                  alt={`Foto de ${plant.common_name}`}
-                  className="main__user__myPlantsList__image"
-                />
+                <div className="main__user__myPlantsList__imageWrapper">
+                  <img
+                    src={require(`../../images/plants/${plant.image}.jpg`)}
+                    title={`Foto de ${plant.common_name}`}
+                    alt={`Foto de ${plant.common_name}`}
+                    className="main__user__myPlantsList__image"
+                  />
+                </div>
+                <p className="main__user__myPlantsList__name">
+                  {plant.common_name}
+                </p>
               </Link>
             </li>
           );
