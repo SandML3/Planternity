@@ -1,5 +1,5 @@
 import "../../styles/components/UserProfile.scss";
-import logo from "../../images/logo_color.svg";
+import logo from "../../images/logo_white.svg";
 
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -97,8 +97,8 @@ const UserProfile = ({
   return (
     <div className="page__user">
       <header className="header__user">
-        <h1 className="header__user__title">¡Bienvenida, {userData.name}!</h1>
-        <p className="header__user__text"></p>
+        <h1 className="header__user__title">¡Hola {userData.name}!</h1>
+        <p className="header__user__text">Bienvenida a tu edén particular</p>
         <Link to="/" title="Volver a Home">
           <img className="logo" src={logo} alt="logo" title="Logo" />
         </Link>
@@ -106,7 +106,7 @@ const UserProfile = ({
 
       <main className="main__user">
         <section className="main__user__myPlants">
-          <h2 className="main__user__myPlants__title">Mis plantas</h2>
+          <h2 className="main__user__myPlants__title">Plantas</h2>
           <form className="main__user__myPlants__input">
             <InputText
               placeholder="Buscar entre mis plantas"

@@ -2,9 +2,10 @@
 
 .page__user {
     //background-color: $background_color;
-    padding: 2rem;
+    //padding: 2rem;
     min-height: 100vh;
 }
+
 
 .header__user {
     display: flex;
@@ -12,23 +13,31 @@
     justify-content: center;
     padding-top: 2rem;
     padding-left: 1rem;
-    
+    background-image: url("../../images/header.jpg");
+    background-position: 0rem -2rem ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 25vh;
+   
 
     &__title {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: $title_font;
         font-size: 1.2rem;
-        color: rgb(58, 70, 69);
+        color: rgb(38, 42, 41);
         font-weight: 700;
         margin: 1rem 0em;
+        text-align: center;
     }
 
     &__text {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         color: rgb(61, 75, 71);
+        text-align: center;
     }
 
     .logo {
         width: 1.5rem;
+        mix-blend-mode: hard-light;
         position: absolute;
         top: 0;
         right: 0;
@@ -40,7 +49,9 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        margin-top: 0.5rem;
+        //margin-top: 0.5rem;
+        padding: 1rem 2rem;
+        
         
 
         &__myPlants {
@@ -48,7 +59,10 @@
              flex-direction: column;
             
            &__title {
-            font-weight: 500;
+            font-family: $common_font;
+            font-size: 0.9rem;
+            color: $main_color;
+            font-weight: 700;
             margin: 1rem 0rem;
            }
 
@@ -62,6 +76,7 @@
             align-self: center;
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-around;
             min-height: 40vh;
 
 
