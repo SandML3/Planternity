@@ -1,3 +1,5 @@
+@import '../core/variables.scss';
+
 //Main.
 .main {
     position: relative;
@@ -42,7 +44,7 @@
         border-radius: 5rem;
         margin-top: 3rem;
         margin-bottom: 1rem;
-        background-color: rgba(83, 112, 98, 0.404);
+        background-color: $background_color;
         color: white;
         font-weight: 700;
         text-transform: uppercase;

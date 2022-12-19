@@ -39,24 +39,23 @@
         font-weight: 800;
         mix-blend-mode: multiply;
         margin-top: 8rem;
-    }
+        }
 
-    &__subtitle {
-        font-weight: 400;
-        font-size: 0.88rem;
-        color: rgb(0, 0, 0);
-        mix-blend-mode: multiply;
-        
-    }
+        &__subtitle {
+            font-weight: 400;
+            font-size: 0.88rem;
+            color: rgb(0, 0, 0);
+            mix-blend-mode: multiply;
+            
+        }
 
-    &__image{
-        align-self: center;
-        margin-top: 2rem;
-        width: 20rem;
-        border-radius: 5px
+        &__image{
+            align-self: center;
+            margin-top: 2rem;
+            width: 20rem;
+            border-radius: 5px
+        }
     }
-    }
-
 
     &__main {
         display: flex;
