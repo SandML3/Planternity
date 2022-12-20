@@ -1,14 +1,32 @@
 @import '../core/variables.scss';
 
 .explorePlants {
-    background-color: rgb(221, 233, 232);
+    //background-color: rgb(221, 233, 232);
     min-height: 100%;
     
     &__header {
+
+        &__title {
+            margin: 2rem;
+            margin-bottom: 0rem;
+            font-size: 1.2rem;
+            font-family: $title_font;
+            color: $main_color;
+        }
+
+        &__text {
+            margin: 1.5rem;
+            margin-left: 2.5rem;
+            font-size: 0.8rem;
+            font-family: $title_font;
+            color: $main_color;
+        }
+
         &__nav {
             display: flex;
             justify-content: flex-end;
         }
+
         
         &__link {
             color: $main_color;
@@ -34,7 +52,7 @@
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: space-arround;
         padding: 2rem;
         padding-top: 1rem;
        

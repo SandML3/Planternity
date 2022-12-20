@@ -68,6 +68,10 @@ const ExplorePlants = ({
             Volver
           </Link>
         </nav>
+        <h1 className="explorePlants__header__title">Añadir plantas</h1>
+        <p className="explorePlants__header__text">
+          Busca plantas por su nombre común, nombre científico o por variedad.
+        </p>
         <form className="link explorePlants__header__form">
           <InputText
             name="name"
