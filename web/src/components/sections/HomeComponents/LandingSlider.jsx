@@ -20,12 +20,12 @@ const LandingSlider = (props) => {
 
   //Arrows logic.
   const nextSlide = () =>
-    slideItem !== -sliderWidthRef.current
+    slideItem !== -sliderWidthRef.current * 1.01
       ? setSlideItem(slideItem - sliderWidthRef.current * 1.01)
       : setSlideItem(slideItem + sliderWidthRef.current * 1.01);
 
   const prevSlide = () => {
-    slideItem === -sliderWidthRef.current || slideItem !== 0
+    slideItem === -sliderWidthRef.current * 1.01 || slideItem !== 0
       ? setSlideItem(slideItem + sliderWidthRef.current * 1.01)
       : setSlideItem(slideItem - sliderWidthRef.current * 1.01);
   };
