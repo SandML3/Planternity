@@ -1,4 +1,4 @@
-import "../styles/App.scss";
+import "../assets/styles/App.scss";
 
 import apiUser from "../services/api-users";
 import apiPlants from "../services/api-plants";

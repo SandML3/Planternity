@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import leavesLeft from "../../../images/leaves_left.png";
-import leavesRight from "../../../images/leaves_right.png";
-import smallLeavesRight from "../../../images/small_leaves_right.png";
+import leavesLeft from "../../../assets/images/leaves_left.png";
+import leavesRight from "../../../assets/images/leaves_right.png";
+import smallLeavesRight from "../../../assets/images/small_leaves_right.png";
 
-import "../../../styles/components/LandingHeader.scss";
-import logo from "../../../images/logo_white.svg";
+import "../../../assets/styles/components/LandingHeader.scss";
+import logo from "../../../assets/images/logo_white.svg";
 
 const LandingHeader = ({ isUserLogged, updateUserData }) => {
   //Header parallax.

@@ -1,7 +1,7 @@
-import leftArrow from "../../../images/icons/arrow-left.svg";
-import rightArrow from "../../../images/icons/arrow-right.svg";
+import leftArrow from "../../../assets/images/icons/arrow-left.svg";
+import rightArrow from "../../../assets/images/icons/arrow-right.svg";
 
-import "../../../styles/components/ButtonSlide.scss";
+import "../../../assets/styles/components/ButtonSlide.scss";
 
 const ButtonSlider = ({ moveSlide, direction }) => {
   return (

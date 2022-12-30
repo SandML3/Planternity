@@ -1,4 +1,4 @@
-import "../../styles/components/ExplorePlants.scss";
+import "../../assets/styles/components/ExplorePlants.scss";
 
 //import { motion } from "framer-motion";
 import { useState, useEffect } from "react";

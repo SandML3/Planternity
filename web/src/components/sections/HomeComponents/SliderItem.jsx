@@ -1,4 +1,4 @@
-import "../../../styles/components/SliderItem.scss";
+import "../../../assets/styles/components/SliderItem.scss";
 
 const SliderItem = (props) => {
   return (

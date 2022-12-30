@@ -1,10 +1,10 @@
-import "../../styles/components/SignUpPage.scss";
+import "../../assets/styles/components/SignUpPage.scss";
 import { Link } from "react-router-dom";
 
 import InputText from "../commons/InputText";
 
-import headerImage from "../../images/login_header.jpg";
-import logo from "../../images/logo_color.svg";
+import headerImage from "../../assets/images/login_header.jpg";
+import logo from "../../assets/images/logo_color.svg";
 
 const SignUpPage = ({
   userData,

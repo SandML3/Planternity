@@ -64,7 +64,7 @@ const PlantItem = ({ userPlants, plant, updatePlantsData }) => {
         }
       >
         <img
-          src={require(`../../images/plants/${plant.image}.jpg`)}
+          src={require(`../../assets/images/plants/${plant.image}.jpg`)}
           title={`Foto de ${plant.common_name}`}
           alt={`Foto de ${plant.common_name}`}
           className="plantImage"

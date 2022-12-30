@@ -1,5 +1,5 @@
-import "../../styles/components/UserProfile.scss";
-import logo from "../../images/logo_white.svg";
+import "../../assets/styles/components/UserProfile.scss";
+import logo from "../../assets/images/logo_white.svg";
 
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -63,7 +63,7 @@ const UserProfile = ({
               <Link to={`/user/${params.userId}/plant/${plant.id}`}>
                 <div className="main__user__myPlantsList__imageWrapper">
                   <img
-                    src={require(`../../images/plants/${plant.image}.jpg`)}
+                    src={require(`../../assets/images/plants/${plant.image}.jpg`)}
                     title={`Foto de ${plant.common_name}`}
                     alt={`Foto de ${plant.common_name}`}
                     className="main__user__myPlantsList__image"

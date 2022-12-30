@@ -1,4 +1,4 @@
-import "../../styles/components/PlantDetails.scss";
+import "../../assets/styles/components/PlantDetails.scss";
 
 import { useParams } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const PlantDetails = ({ userPlants }) => {
       <header
         className="plantDetail__header"
         style={{
-          backgroundImage: `url("${require(`../../images/plants/${plant.image}.jpg`)}")`,
+          backgroundImage: `url("${require(`../../assets/images/plants/${plant.image}.jpg`)}")`,
         }}
       >
         <h2 className="plantDetail__header__title">{plant.common_name}</h2>

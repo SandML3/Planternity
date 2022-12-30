@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../../styles/components/Home.scss";
+import "../../assets/styles/components/Home.scss";
 
 import LandingHeader from "../sections/HomeComponents/LandingHeader";
 import LandingSlider from "../sections/HomeComponents/LandingSlider";
