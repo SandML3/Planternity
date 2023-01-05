@@ -21,10 +21,10 @@ const PlantDetails = ({ userPlants }) => {
         </h3>
       </header>
       <main className="plantDetail__main">
-        <p className="plantDetail__main__text">
+        <p className="plantDetail__main__text family">
           <span className="bolder">Familia: </span>: {plant.family}
         </p>
-        <p className="plantDetail__main__text">
+        <p className="plantDetail__main__text genus">
           <span className="bolder">Género: </span> {plant.genus}
         </p>
         <p className="plantDetail__main__text">
