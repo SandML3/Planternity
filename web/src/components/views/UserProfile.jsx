@@ -64,13 +64,13 @@ const UserProfile = ({
                 <div className="main__user__myPlantsList__imageWrapper">
                   <img
                     src={require(`../../assets/images/plants/${plant.image}.jpg`)}
-                    title={`Foto de ${plant.common_name}`}
-                    alt={`Foto de ${plant.common_name}`}
+                    title={`Foto de ${plant.common_name.split(",")[0]}`}
+                    alt={`Foto de ${plant.common_name.split(",")[0]}`}
                     className="main__user__myPlantsList__image"
                   />
                 </div>
                 <p className="main__user__myPlantsList__name">
-                  {plant.common_name}
+                  {plant.common_name.split(",")[0]}
                 </p>
               </Link>
             </li>

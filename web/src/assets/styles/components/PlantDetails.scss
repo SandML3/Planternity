@@ -48,6 +48,7 @@
     &__main {
         text-align: justify;
         padding-bottom: 3rem;
+        font-size: 0.9rem;
 
         &__info {
             display: grid;
@@ -71,20 +72,17 @@
         &__table {
             display: grid;
             grid-template-columns: 0.2fr 1fr;
-            grid-template-rows: 1fr 1fr 1fr;
             padding: 1.5rem;
             background-color: rgb(228, 234, 234);
+            row-gap: 0.2rem;
            
-            //max-width: 500px;
-
             &__title {
-                padding: 0.3rem;
                 font-weight: 500;
             }
     
             &__text {
-                padding: 0.3rem;
-                margin-left: 0.5rem;   
+                margin-left: 1rem;  
+                text-align: start;
             }
         }
 
@@ -97,8 +95,8 @@
 
         &__text {
             padding:  0rem 1rem;
-            font-size: 0.9rem;
-            line-height: 1.2rem;
+            font-size: 0.8rem;
+            line-height: 1.4rem;
         }
     }
 
