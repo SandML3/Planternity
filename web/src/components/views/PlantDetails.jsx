@@ -11,62 +11,64 @@ const PlantDetails = ({ userPlants }) => {
     <div className="plantDetail">
       <header
         className="plantDetail__header"
-        style={{
-          backgroundImage: `url("${require(`../../assets/images/plants/${plant.image}.jpg`)}")`,
-        }}
+        // style={{
+        //   backgroundImage: `url("${require(`../../assets/images/plants/${plant.image}.jpg`)}")`,
+        // }}
       >
-        <h2 className="plantDetail__header__title">{plant.common_name}</h2>
-        <h3 className="plantDetail__header__subtitle">
-          {plant.scientific_name}
-        </h3>
+        <h2 className="plantDetail__header__title">{plant.scientific_name}</h2>
+        <h3 className="plantDetail__header__subtitle">{plant.common_name}.</h3>
       </header>
+
       <main className="plantDetail__main">
-        <p className="plantDetail__main__text family">
-          <span className="bolder">Familia: </span>: {plant.family}
-        </p>
-        <p className="plantDetail__main__text genus">
-          <span className="bolder">Género: </span> {plant.genus}
-        </p>
-        <p className="plantDetail__main__text">
-          <span className="bolder">Origen: </span>
-          {plant.origin}
-        </p>
-        <p className="plantDetail__main__text">
-          <span className="bolder">Luz: </span>
-          {plant.light_conditions}
-        </p>
-        <p className="plantDetail__main__text">
-          <span className="bolder">Sustrato: </span>
-          {plant.soil_type} <span className="bolder"> Ph: </span>{" "}
-          {plant.soil_ph}
-        </p>
-        <p className="plantDetail__main__text">
-          <span className="bolder">Temperatura: </span>
-          {plant.temperature}
-        </p>
+        <section className="plantDetail__main__info">
+          <div
+            className="plantDetail__main__img"
+            style={{
+              backgroundImage: `url("${require(`../../assets/images/plants/${plant.image}.jpg`)}")`,
+            }}
+          ></div>
 
-        <p className="plantDetail__main__text">
-          <span className="bolder">Humedad: </span>
-          {plant.humidity}
-        </p>
-        <p className="plantDetail__main__text">
-          <span className="bolder">Riego: </span>
-          {plant.water_requirements}
-        </p>
+          <div className="plantDetail__main__table">
+            <h4 className="plantDetail__main__table__title">Familia: </h4>
+            <p className="plantDetail__main__table__text">{plant.family}</p>
+            <h4 className="plantDetail__main__table__title">Género:</h4>
+            <p className="plantDetail__main__table__text">{plant.genus}</p>
+            <h4 className="plantDetail__main__table__title">Origen:</h4>
+            <p className="plantDetail__main__table__text">{plant.origin}</p>
+            <h4 className="plantDetail__main__table__title">Ph:</h4>
+            <p className="plantDetail__main__table__text">{plant.soil_ph}</p>
+            <h4 className="plantDetail__main__table__title">Toxicidad:</h4>
+            <p className="plantDetail__main__table__text">
+              {plant.toxicity === "true" ? "Sí" : "Childs and pet friendly"}
+            </p>
+          </div>
+        </section>
 
-        <p className="plantDetail__main__text">
-          <span className="bolder">Transplante: </span>
-          {plant.potting}
-        </p>
+        <p className="plantDetail__main__text">{plant.description}</p>
 
-        <p className="plantDetail__main__text">
-          <span className="bolder">Propagación: </span>
-          {plant.propagation}
-        </p>
-        <p className="plantDetail__main__text">
-          <span className="bolder">Curiosidades: </span>
-          {plant.curiosities}
-        </p>
+        <h4 className="plantDetail__main__title">Luz</h4>
+        <p className="plantDetail__main__text">{plant.light_conditions}</p>
+
+        <h4 className="plantDetail__main__title">Sustrato</h4>
+        <p className="plantDetail__main__text">{plant.soil_type}</p>
+
+        <h4 className="plantDetail__main__title">Temperatura</h4>
+        <p className="plantDetail__main__text">{plant.temperature}</p>
+
+        <h4 className="plantDetail__main__title">Humedad</h4>
+        <p className="plantDetail__main__text">{plant.humidity}</p>
+
+        <h4 className="plantDetail__main__title">Riego</h4>
+        <p className="plantDetail__main__text">{plant.water_requirements}</p>
+
+        <h4 className="plantDetail__main__title">Transplante</h4>
+        <p className="plantDetail__main__text">{plant.potting}</p>
+
+        <h4 className="plantDetail__main__title">Propagación</h4>
+        <p className="plantDetail__main__text">{plant.propagation}</p>
+
+        <h4 className="plantDetail__main__title">Curiosidades</h4>
+        <p className="plantDetail__main__text">{plant.curiosities}</p>
       </main>
     </div>
   );
