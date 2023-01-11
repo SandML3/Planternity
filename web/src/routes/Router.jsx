@@ -11,7 +11,8 @@ const Router = ({
   userData,
   updateUserData,
   userPlants,
-  updateUserPlants,
+  addUserPlant,
+  deleteUserPlant,
   infoMessage,
   updateInfoMessage,
   sendLoginToApi,
@@ -71,7 +72,7 @@ const Router = ({
             getUserDataFromApi={getUserDataFromApi}
             saveInLocalStorage={saveInLocalStorage}
             userPlants={userPlants}
-            updateUserPlants={updateUserPlants}
+            deleteUserPlant={deleteUserPlant}
             sendUserPlantsToApi={sendUserPlantsToApi}
             getUserPlantsFromApi={getUserPlantsFromApi}
           />
@@ -86,7 +87,8 @@ const Router = ({
             updateUserData={updateUserData}
             userPlants={userPlants}
             getPlantsFromApi={getPlantsFromApi}
-            updateUserPlants={updateUserPlants}
+            addUserPlant={addUserPlant}
+            deleteUserPlant={deleteUserPlant}
           />
         }
       />

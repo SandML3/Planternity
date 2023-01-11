@@ -2,15 +2,10 @@ import "../../assets/styles/components/PlantItem.scss";
 
 import { motion } from "framer-motion";
 
-const PlantItem = ({ plant, updatePlantsData, iconState }) => {
+const PlantItem = ({ plant, updatePlantsData, isUserPlant }) => {
   const handleClick = (ev) => {
     const plantId = ev.currentTarget.id;
-
-    if (!iconState) {
-      updatePlantsData("add", plantId);
-    } else {
-      updatePlantsData("delete", plantId);
-    }
+    updatePlantsData(plantId);
   };
 
   const Path = (props) => (
@@ -24,15 +19,15 @@ const PlantItem = ({ plant, updatePlantsData, iconState }) => {
   );
 
   return (
-    <div
-      onClick={handleClick}
-      id={plant.id}
-      title={iconState ? "Eliminar" : "Añadir"}
-    >
-      <svg className={iconState ? "plantItem__icon--added" : "plantItem__icon"}>
+    <div title={isUserPlant ? "Eliminar" : "Añadir"}>
+      <svg
+        className={isUserPlant ? "plantItem__icon--added" : "plantItem__icon"}
+        onClick={handleClick}
+        id={plant.id}
+      >
         <Path
-          d={iconState ? "M 12 12 L 20 20" : "M 15 12 L 15 22"}
-          animate={iconState ? "added" : "notAdded"}
+          d={isUserPlant ? "M 12 12 L 20 20" : "M 15 12 L 15 22"}
+          animate={isUserPlant ? "added" : "notAdded"}
           variants={{
             notAdded: { d: "M 15 12 L 15 22" },
             added: {
@@ -42,8 +37,8 @@ const PlantItem = ({ plant, updatePlantsData, iconState }) => {
           transition={{ duration: 0.25, type: "spring", stiffness: 100 }}
         />
         <Path
-          d={iconState ? "M 20 12 L 12 20" : "M 10 17 L 20 17"}
-          animate={iconState ? "added" : "notAdded"}
+          d={isUserPlant ? "M 20 12 L 12 20" : "M 10 17 L 20 17"}
+          animate={isUserPlant ? "added" : "notAdded"}
           variants={{
             notAdded: {
               d: "M 10 17 L 20 17",
@@ -56,22 +51,9 @@ const PlantItem = ({ plant, updatePlantsData, iconState }) => {
         />
       </svg>
 
-      {/* <div
-        className={
-          iconState ? "plantImage__container--added" : "plantImage__container"
-        }
-      >
-        <img
-          src={require(`../../assets/images/plants/${plant.image}.jpg`)}
-          title={`Foto de ${plant.common_name}`}
-          alt={`Foto de ${plant.common_name}`}
-          className="plantImage"
-        />
-      </div> */}
-
       <div
         className={
-          iconState
+          isUserPlant
             ? "plantItem__imageWrapper--added"
             : "plantItem__imageWrapper"
         }

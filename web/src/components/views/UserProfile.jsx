@@ -12,8 +12,7 @@ const UserProfile = ({
   getUserDataFromApi,
   saveInLocalStorage,
   getUserPlantsFromApi,
-  updateUserPlants,
-  updateUserData,
+  deleteUserPlant,
   sendUserPlantsToApi,
 }) => {
   const [filterPlants, setFilterPlants] = useState({ name: "" });
@@ -53,9 +52,9 @@ const UserProfile = ({
     }
   };
 
-  const updatePlantsData = (action, plantId) => {
+  const updatePlantsData = (plantId) => {
     sendUserPlantsToApi(plantId);
-    updateUserPlants(action, plantId);
+    deleteUserPlant(plantId);
   };
 
   const userPlantList = userPlants
@@ -78,9 +77,8 @@ const UserProfile = ({
               onClick={getPlantDetails}
             >
               <PlantItem
-                iconState={true}
+                isUserPlant={true}
                 plant={plant}
-                updateUserPlants={updateUserPlants}
                 updatePlantsData={updatePlantsData}
               />
             </li>

@@ -42,16 +42,16 @@ function App() {
     setInfoMessage({ ...infoMessage, [key]: value });
   };
 
-  const updateUserPlants = (action = "add", plant) => {
-    if (action === "add") {
-      setUserPlants([...userPlants, plant]);
-    } else {
-      const plantIndex = userPlants.findIndex(
-        (userPlant) => userPlant.id === plant.id
-      );
-      userPlants.splice(plantIndex, 1);
-      setUserPlants([...userPlants]);
-    }
+  const addUserPlant = (plant) => {
+    setUserPlants([...userPlants, plant]);
+  };
+
+  const deleteUserPlant = (plantId) => {
+    const plantIndex = userPlants.findIndex(
+      (userPlant) => userPlant.id === parseInt(plantId)
+    );
+    userPlants.splice(plantIndex, 1);
+    setUserPlants([...userPlants]);
   };
 
   //--Save user plants
@@ -84,7 +84,10 @@ function App() {
         userData={userData}
         updateUserData={updateUserData}
         userPlants={userPlants}
-        updateUserPlants={updateUserPlants}
+        //
+        addUserPlant={addUserPlant}
+        deleteUserPlant={deleteUserPlant}
+        //
         infoMessage={infoMessage}
         updateInfoMessage={updateInfoMessage}
         sendLoginToApi={apiUser.sendLoginToApi}

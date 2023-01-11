@@ -12,7 +12,8 @@ const ExplorePlants = ({
   sendUserPlantsToApi,
   getPlantsFromApi,
   userPlants,
-  updateUserPlants,
+  addUserPlant,
+  deleteUserPlant,
 }) => {
   //State variables
   const [allPlants, setAllPlants] = useState([]);
@@ -28,12 +29,18 @@ const ExplorePlants = ({
   }, [getPlantsFromApi]);
 
   //Send new plant to api and update the state variable
-  const updatePlantsData = (action, newPlantId) => {
+  const updatePlantsData = (newPlantId) => {
     sendUserPlantsToApi(newPlantId);
+
     const newPlant = allPlants.find(
       (plant) => plant.id === parseInt(newPlantId)
     );
-    updateUserPlants(action, newPlant);
+
+    const isUserPlant = !!userPlants.find(
+      (plant) => plant.id === parseInt(newPlantId)
+    );
+
+    !isUserPlant ? addUserPlant(newPlant) : deleteUserPlant(newPlantId);
   };
 
   const plantsList = allPlants
@@ -54,8 +61,7 @@ const ExplorePlants = ({
       return (
         <li key={index} className="plantList__item">
           <PlantItem
-            iconState={isUserPlant}
-            updateUserPlants={updateUserPlants}
+            isUserPlant={isUserPlant}
             plant={plant}
             updatePlantsData={updatePlantsData}
           />
