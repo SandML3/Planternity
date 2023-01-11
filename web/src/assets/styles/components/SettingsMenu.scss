@@ -1,0 +1,39 @@
+@import "../core/variables.scss";
+
+.settingsMenu {
+    background-color: $background_color;
+    min-height: 100vh;
+
+    &__header {
+        font-size: 0.9rem;
+        
+        &__backButton {
+            color: $main_color;
+            border: transparent;
+            background-color: transparent;
+            padding: 1rem;
+            }
+
+        &__title {
+            color: $darker_color;
+            text-align: center;
+            padding-top: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid  hsla(150, 9%, 34%, 0.2);
+            font-weight: 600;
+            }
+        }
+
+    &__main {
+        font-size: 0.85rem;
+
+        &__list {
+            padding: 1rem;
+        }
+        &__item {
+            padding: 0.4rem;
+            text-decoration: none;
+        } 
+    }
+}
+

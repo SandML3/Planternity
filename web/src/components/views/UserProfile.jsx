@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 import InputText from "../commons/InputText";
 import PlantItem from "../commons/PlantItem";
+import SettingsMenu from "./SettingsMenu";
 
 const UserProfile = ({
   userData,
@@ -16,6 +17,8 @@ const UserProfile = ({
   sendUserPlantsToApi,
 }) => {
   const [filterPlants, setFilterPlants] = useState({ name: "" });
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const params = useParams();
 
   const updateFilterValue = (key, value) => {
@@ -102,7 +105,17 @@ const UserProfile = ({
       <ul className="main__user__myPlantsList">{userPlantList}</ul>
     );
 
-  return (
+  const toggleMenu = (ev) => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const setMenuClose = () => {
+    setIsMenuOpen(false);
+  };
+
+  return isMenuOpen ? (
+    <SettingsMenu setMenuClose={setMenuClose} />
+  ) : (
     <div className="page__user">
       <header className="header__user">
         <div className="header__user__text">
@@ -110,7 +123,9 @@ const UserProfile = ({
           <p className="header__user__text--name"> {userData.name}</p>
         </div>
 
-        <i className="header__user__settings fa-solid fa-gear"></i>
+        <button className="header__user__settings">
+          <i className="fa-solid fa-gear" onClick={toggleMenu}></i>
+        </button>
       </header>
 
       <main className="main__user">
