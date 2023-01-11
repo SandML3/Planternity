@@ -1,5 +1,4 @@
 import "../../assets/styles/components/UserProfile.scss";
-import logo from "../../assets/images/logo_white.svg";
 
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -97,11 +96,12 @@ const UserProfile = ({
   return (
     <div className="page__user">
       <header className="header__user">
-        <h1 className="header__user__title">¡Hola {userData.name}!</h1>
-        <p className="header__user__text">Bienvenida a tu edén particular</p>
-        <Link to="/" title="Volver a Home">
-          <img className="logo" src={logo} alt="logo" title="Logo" />
-        </Link>
+        <div className="header__user__text">
+          <p className="header__user__text--greeting">Bienvenida,</p>
+          <p className="header__user__text--name"> {userData.name}</p>
+        </div>
+
+        <i className="header__user__settings fa-solid fa-gear"></i>
       </header>
 
       <main className="main__user">
@@ -124,19 +124,19 @@ const UserProfile = ({
           <li className="main__user__options__item">
             <Link to={`/plants`} className="itemContain link">
               <i className="fa-solid fa-magnifying-glass icon"></i>
-              Buscar
+              {/* Buscar */}
             </Link>
           </li>
           <li className="main__user__options__item">
             <Link to="" className="itemContain link">
               <i className="fa-solid fa-book icon"></i>
-              Consejos
+              {/* Consejos */}
             </Link>
           </li>
           <li className="main__user__options__item">
             <Link to="" className="itemContain link">
               <i className="fa-regular fa-calendar icon"></i>
-              Calendario
+              {/* Calendario */}
             </Link>
           </li>
         </ul>

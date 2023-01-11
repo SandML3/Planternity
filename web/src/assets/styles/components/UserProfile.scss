@@ -1,48 +1,46 @@
 @import '../core/variables.scss';
 
 .page__user {
-    //background-color: $background_color;
-    //padding: 2rem;
     min-height: 100vh;
-}
+    position: relative;
 
+}
 
 .header__user {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 1rem;
     padding-top: 2rem;
-    padding-left: 1rem;
-    background-image: url("../../images/header.jpg");
-    background-position: 0rem -2rem ;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 25vh;
-   
-
-    &__title {
-        font-family: $title_font;
-        font-size: 1.2rem;
-        color: rgb(38, 42, 41);
-        font-weight: 700;
-        margin: 1rem 0em;
-        text-align: center;
-    }
-
+    padding-left: 2rem;
+ 
+    
     &__text {
-        font-size: 0.8rem;
-        color: rgb(61, 75, 71);
+        display: flex;
+        flex-direction: row;
+        gap: 0.2rem;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font-size: 0.75rem;
+        color: $main_color;
+        margin: 0.5rem 0em;
         text-align: center;
+
+        &--greeting {
+            font-family: $title_font;
+            color: rgb(61, 75, 71);
+        }
+
+        &--name {
+            font-weight: 700;
+        }
     }
 
-    .logo {
-        width: 1.5rem;
-        mix-blend-mode: hard-light;
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin: 2rem;
+    &__settings {
+        padding: 0.5rem 2rem;
+        color: $main_color;
+        font-size: 1.2rem;
     }
+
     };
 
     .main__user {
@@ -51,6 +49,9 @@
         gap: 1rem;
         //margin-top: 0.5rem;
         padding: 1rem 2rem;
+        
+
+        
         
         
 
@@ -88,9 +89,6 @@
                 border-radius: 1rem;
                 text-align: center;
                 padding: 1.5rem;
-                
-
-                
             }
 
             &__link {
@@ -144,9 +142,21 @@
 
         &__options {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            align-items: flex-end;
+            justify-content: space-around;
+            
+            
+
+            border: transparent;
+            background-color: rgba(198, 216, 210, 0.706);
+            width: 100%;
+            color: $main_color;
+           padding-top: 0.5rem;
+
+            position: absolute;
+            bottom: 0;
+            left: 0;
+          
 
             &__item {
                 //border-radius: 1rem;
@@ -159,13 +169,13 @@
                     justify-content: center;
                     align-items: center;
                     gap: 0.5rem;
-                    font-size: 0.9rem;
+                    font-size: 0.8rem;
                     color: #3a4645d0;
                 }
 
                 .icon {
                     color: #3a4645;
-                    font-size: 1.3rem;
+                    font-size: 1.1rem;
                 }
             }
         }
