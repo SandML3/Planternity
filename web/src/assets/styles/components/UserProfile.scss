@@ -41,7 +41,7 @@
         font-size: 1.2rem;
     }
 
-    };
+};
 
     .main__user {
         display: flex;
@@ -49,10 +49,6 @@
         gap: 1rem;
         //margin-top: 0.5rem;
         padding: 1rem 2rem;
-        
-
-        
-        
         
 
         &__myPlants {
@@ -79,6 +75,7 @@
             flex-wrap: wrap;
             justify-content: space-around;
             min-height: 40vh;
+            
 
 
             &__contain {
@@ -89,54 +86,24 @@
                 border-radius: 1rem;
                 text-align: center;
                 padding: 1.5rem;
+                
             }
 
             &__link {
                 color: $main_color;
+                position: relative;
             }
 
             &__item {
+                display: flex;
+                gap: 0.5rem;
+                flex-direction: column;
+                justify-content: center;
                 border-radius: 10%;
                 margin: 0.5rem;
-                height: 18vh;
-                width: 13vh;
-                //overflow: hidden;
+                height: 19vh;
+                width: 16vh;
                 position: relative;
-                
-
-                
-            }
-
-            &__imageWrapper {
-                height: 13vh;
-                width: 13vh;
-                overflow: hidden;
-                position: relative;
-                border-radius: 10%;
-                
-            }
-
-            &__image {
-                width: 100%;
-                position: relative;
-                bottom: 20px;
-            }
-
-            &__name {
-                color: #3a4645;
-                position: absolute;
-                background-color: rgba(232, 238, 230, 0.4);
-                border: rgba(255, 255, 255, 0.4) 1px solid;
-                font-size: 0.7rem;
-                width: 11vh;
-                backdrop-filter: blur(2px);
-                //height: 50px;
-                border-radius: 5px;
-                bottom: 20px;
-                text-align: center;
-                padding: 0.5rem;
-                font-weight: 600;
-                //right: -5px;
             }
         }
 
@@ -144,15 +111,11 @@
             display: flex;
             align-items: flex-end;
             justify-content: space-around;
-            
-            
-
             border: transparent;
             background-color: rgba(198, 216, 210, 0.706);
             width: 100%;
             color: $main_color;
-           padding-top: 0.5rem;
-
+            padding-top: 0.5rem;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -160,7 +123,6 @@
 
             &__item {
                 //border-radius: 1rem;
-                
 
                 .itemContain {
                     padding: 1rem;

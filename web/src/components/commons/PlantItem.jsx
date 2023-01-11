@@ -1,18 +1,13 @@
+import "../../assets/styles/components/PlantItem.scss";
+
 import { motion } from "framer-motion";
 
-import { useState } from "react";
-
-const PlantItem = ({ userPlants, plant, updatePlantsData }) => {
-  const [isUserPlant, setIsUserPlant] = useState(
-    !!userPlants.find((userPlant) => userPlant.id === parseInt(plant.id))
-  );
-
+const PlantItem = ({ plant, updatePlantsData, iconState }) => {
   const handleClick = (ev) => {
     const newPlantId = ev.currentTarget.id;
 
-    if (!userPlants.find((plant) => plant.id === parseInt(newPlantId))) {
+    if (!iconState) {
       updatePlantsData(newPlantId);
-      setIsUserPlant(true);
     }
   };
 
@@ -25,16 +20,17 @@ const PlantItem = ({ userPlants, plant, updatePlantsData }) => {
       {...props}
     />
   );
+
   return (
     <div
       onClick={handleClick}
       id={plant.id}
-      title={isUserPlant ? "Eliminar" : "Añadir"}
+      title={iconState ? "Eliminar" : "Añadir"}
     >
-      <svg className="plantList__item__icon">
+      <svg className={iconState ? "plantItem__icon--added" : "plantItem__icon"}>
         <Path
-          d={isUserPlant ? "M 12 12 L 20 20" : "M 15 12 L 15 22"}
-          animate={isUserPlant ? "added" : "notAdded"}
+          d={iconState ? "M 12 12 L 20 20" : "M 15 12 L 15 22"}
+          animate={iconState ? "added" : "notAdded"}
           variants={{
             notAdded: { d: "M 15 12 L 15 22" },
             added: {
@@ -44,8 +40,8 @@ const PlantItem = ({ userPlants, plant, updatePlantsData }) => {
           transition={{ duration: 0.25, type: "spring", stiffness: 100 }}
         />
         <Path
-          d={isUserPlant ? "M 20 12 L 12 20" : "M 10 17 L 20 17"}
-          animate={isUserPlant ? "added" : "notAdded"}
+          d={iconState ? "M 20 12 L 12 20" : "M 10 17 L 20 17"}
+          animate={iconState ? "added" : "notAdded"}
           variants={{
             notAdded: {
               d: "M 10 17 L 20 17",
@@ -58,9 +54,9 @@ const PlantItem = ({ userPlants, plant, updatePlantsData }) => {
         />
       </svg>
 
-      <div
+      {/* <div
         className={
-          isUserPlant ? "plantImage__container--added" : "plantImage__container"
+          iconState ? "plantImage__container--added" : "plantImage__container"
         }
       >
         <img
@@ -69,8 +65,23 @@ const PlantItem = ({ userPlants, plant, updatePlantsData }) => {
           alt={`Foto de ${plant.common_name}`}
           className="plantImage"
         />
+      </div> */}
+
+      <div
+        className={
+          iconState
+            ? "plantItem__imageWrapper--added"
+            : "plantItem__imageWrapper"
+        }
+      >
+        <img
+          src={require(`../../assets/images/plants/${plant.image}.jpg`)}
+          title={`Foto de ${plant.common_name.split(",")[0]}`}
+          alt={`Foto de ${plant.common_name.split(",")[0]}`}
+          className="plantItem__image"
+        />
       </div>
-      <p className="plantName">{plant.common_name}</p>
+      <p className="plantItem__name">{plant.common_name.split(",")[0]}</p>
     </div>
   );
 };

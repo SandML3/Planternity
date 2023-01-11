@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import InputText from "../commons/InputText";
+import PlantItem from "../commons/PlantItem";
 
 const UserProfile = ({
   userData,
@@ -45,6 +46,15 @@ const UserProfile = ({
     userData,
   ]);
 
+  const getPlantDetails = (ev) => {
+    if (
+      ev.target.className === "plantItem__image" ||
+      ev.target.className === "plantItem__name"
+    ) {
+      window.location.href = `/user/${params.userId}/plant/${ev.currentTarget.id}`;
+    }
+  };
+
   const userPlantList = userPlants
     ? userPlants
         .filter(
@@ -58,20 +68,17 @@ const UserProfile = ({
         )
         .map((plant) => {
           return (
-            <li className="main__user__myPlantsList__item" key={plant.id}>
-              <Link to={`/user/${params.userId}/plant/${plant.id}`}>
-                <div className="main__user__myPlantsList__imageWrapper">
-                  <img
-                    src={require(`../../assets/images/plants/${plant.image}.jpg`)}
-                    title={`Foto de ${plant.common_name.split(",")[0]}`}
-                    alt={`Foto de ${plant.common_name.split(",")[0]}`}
-                    className="main__user__myPlantsList__image"
-                  />
-                </div>
-                <p className="main__user__myPlantsList__name">
-                  {plant.common_name.split(",")[0]}
-                </p>
-              </Link>
+            <li
+              className="main__user__myPlantsList__item"
+              key={plant.id}
+              id={plant.id}
+              onClick={getPlantDetails}
+            >
+              <PlantItem
+                iconState={true}
+                plant={plant}
+                updatePlantsData={updateUserData}
+              />
             </li>
           );
         })

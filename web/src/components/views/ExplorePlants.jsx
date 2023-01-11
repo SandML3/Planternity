@@ -46,16 +46,22 @@ const ExplorePlants = ({
           .toLowerCase()
           .includes(filterPlants.name.toLowerCase())
     )
-    .map((plant, index) => (
-      <li key={index} className="plantList__item">
-        <PlantItem
-          userPlants={userPlants}
-          updateUserPlants={updateUserPlants}
-          plant={plant}
-          updatePlantsData={updatePlantsData}
-        />
-      </li>
-    ));
+    .map((plant, index) => {
+      const isUserPlant = !!userPlants.find(
+        (userPlant) => userPlant.id === parseInt(plant.id)
+      );
+
+      return (
+        <li key={index} className="plantList__item">
+          <PlantItem
+            iconState={isUserPlant}
+            updateUserPlants={updateUserPlants}
+            plant={plant}
+            updatePlantsData={updatePlantsData}
+          />
+        </li>
+      );
+    });
 
   return (
     <div className="explorePlants">
@@ -68,7 +74,9 @@ const ExplorePlants = ({
             Volver
           </Link>
         </nav>
-        <h1 className="explorePlants__header__title">Añadir plantas</h1>
+        <h1 className="explorePlants__header__title">
+          Descubre nuevas plantas
+        </h1>
         <p className="explorePlants__header__text">
           Busca plantas por su nombre común, nombre científico o por variedad.
         </p>

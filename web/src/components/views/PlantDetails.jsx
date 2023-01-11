@@ -5,16 +5,10 @@ import { useParams } from "react-router-dom";
 const PlantDetails = ({ userPlants }) => {
   const plantId = useParams().plantId;
   const plant = userPlants.find((plant) => plant.id === parseInt(plantId));
-  console.log(plant);
 
   return (
     <div className="plantDetail">
-      <header
-        className="plantDetail__header"
-        // style={{
-        //   backgroundImage: `url("${require(`../../assets/images/plants/${plant.image}.jpg`)}")`,
-        // }}
-      >
+      <header className="plantDetail__header">
         <h2 className="plantDetail__header__title">{plant.scientific_name}</h2>
         <h3 className="plantDetail__header__subtitle">{plant.common_name}.</h3>
       </header>
