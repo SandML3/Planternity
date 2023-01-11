@@ -113,10 +113,19 @@ app.get("/api/plants", (req, res) => {
 app.post("/api/user-plants", (req, res) => {
   console.log("Recibiendo datos de plantas de usuario");
 
-  const query = db.prepare(
+  const checkQuery = db.prepare("SELECT * FROM user_info WHERE plantId = ?");
+  const checkResult = checkQuery.get(req.body.plantId);
+
+  const insertQuery = db.prepare(
     "INSERT INTO user_info (plantId, userId) VALUES (?, ?)"
   );
-  const result = query.run(req.body.plantId, req.body.userId);
+  const deleteQuery = db.prepare("DELETE FROM user_info WHERE plantId = ? ");
+  console.log(checkResult);
+
+  const result = checkResult
+    ? deleteQuery.run(req.body.plantId)
+    : insertQuery.run(req.body.plantId, req.body.userId);
+
   console.log(result);
   res.json(result);
 });

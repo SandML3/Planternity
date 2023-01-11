@@ -9,7 +9,6 @@ import PlantItem from "../commons/PlantItem";
 const UserProfile = ({
   userData,
   userPlants,
-
   getUserDataFromApi,
   saveInLocalStorage,
   getUserPlantsFromApi,
@@ -34,7 +33,6 @@ const UserProfile = ({
       });
 
       getUserPlantsFromApi(params.userId).then((response) => {
-        console.log(response.plants, params.userId);
         saveInLocalStorage("userPlants", response.plants);
       });
     }
@@ -53,6 +51,11 @@ const UserProfile = ({
     ) {
       window.location.href = `/user/${params.userId}/plant/${ev.currentTarget.id}`;
     }
+  };
+
+  const updatePlantsData = (action, plantId) => {
+    sendUserPlantsToApi(plantId);
+    updateUserPlants(action, plantId);
   };
 
   const userPlantList = userPlants
@@ -77,7 +80,8 @@ const UserProfile = ({
               <PlantItem
                 iconState={true}
                 plant={plant}
-                updatePlantsData={updateUserData}
+                updateUserPlants={updateUserPlants}
+                updatePlantsData={updatePlantsData}
               />
             </li>
           );

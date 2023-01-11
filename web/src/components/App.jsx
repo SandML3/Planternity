@@ -42,22 +42,35 @@ function App() {
     setInfoMessage({ ...infoMessage, [key]: value });
   };
 
-  const updateUserPlants = (newUserPlant) => {
-    setUserPlants([...userPlants, newUserPlant]);
+  const updateUserPlants = (action = "add", plant) => {
+    if (action === "add") {
+      setUserPlants([...userPlants, plant]);
+    } else {
+      const plantIndex = userPlants.findIndex(
+        (userPlant) => userPlant.id === plant.id
+      );
+      userPlants.splice(plantIndex, 1);
+      setUserPlants([...userPlants]);
+    }
   };
 
   //--Save user plants
   const sendUserPlantsToApi = (plantId) => {
-    //console.log("sending");
+    apiPlants
+      .sendUserPlantsToApi({
+        plantId: parseInt(plantId),
+        userId: userData.id,
+      })
+      .then((response) => response);
 
-    if (!userPlants.find((plant) => plant.id === parseInt(plantId))) {
-      apiPlants
-        .sendUserPlantsToApi({
-          plantId: parseInt(plantId),
-          userId: userData.id,
-        })
-        .then((response) => response);
-    }
+    // if (!userPlants.find((plant) => plant.id === parseInt(plantId))) {
+    //   apiPlants
+    //     .sendUserPlantsToApi({
+    //       plantId: parseInt(plantId),
+    //       userId: userData.id,
+    //     })
+    //     .then((response) => response);
+    // }
   };
 
   //--Get user plants

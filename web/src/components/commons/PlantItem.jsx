@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 
 const PlantItem = ({ plant, updatePlantsData, iconState }) => {
   const handleClick = (ev) => {
-    const newPlantId = ev.currentTarget.id;
+    const plantId = ev.currentTarget.id;
 
     if (!iconState) {
-      updatePlantsData(newPlantId);
+      updatePlantsData("add", plantId);
+    } else {
+      updatePlantsData("delete", plantId);
     }
   };
 

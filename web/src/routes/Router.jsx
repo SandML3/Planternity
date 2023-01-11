@@ -72,6 +72,7 @@ const Router = ({
             saveInLocalStorage={saveInLocalStorage}
             userPlants={userPlants}
             updateUserPlants={updateUserPlants}
+            sendUserPlantsToApi={sendUserPlantsToApi}
             getUserPlantsFromApi={getUserPlantsFromApi}
           />
         }

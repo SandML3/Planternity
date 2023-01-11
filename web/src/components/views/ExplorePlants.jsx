@@ -28,12 +28,12 @@ const ExplorePlants = ({
   }, [getPlantsFromApi]);
 
   //Send new plant to api and update the state variable
-  const updatePlantsData = (newPlantId) => {
+  const updatePlantsData = (action, newPlantId) => {
     sendUserPlantsToApi(newPlantId);
     const newPlant = allPlants.find(
       (plant) => plant.id === parseInt(newPlantId)
     );
-    updateUserPlants(newPlant);
+    updateUserPlants(action, newPlant);
   };
 
   const plantsList = allPlants
