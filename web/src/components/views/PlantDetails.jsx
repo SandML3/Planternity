@@ -1,14 +1,16 @@
 import "../../assets/styles/components/PlantDetails.scss";
+import ButtonBack from "../commons/ButtonBack";
 
 import { useParams } from "react-router-dom";
 
-const PlantDetails = ({ userPlants }) => {
+const PlantDetails = ({ userPlants, userId }) => {
   const plantId = useParams().plantId;
   const plant = userPlants.find((plant) => plant.id === parseInt(plantId));
 
   return (
     <div className="plantDetail">
       <header className="plantDetail__header">
+        <ButtonBack className="plantDetail__header__nav" userId={userId} />
         <h2 className="plantDetail__header__title">{plant.scientific_name}</h2>
         <h3 className="plantDetail__header__subtitle">{plant.common_name}.</h3>
       </header>

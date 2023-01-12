@@ -48,7 +48,6 @@ function App() {
 
     if (userPlants.length === 0) {
       apiPlants.getUserPlantsFromApi(paramsUserId).then((response) => {
-        console.log(response);
         setUserPlants(response.plants);
       });
     }
