@@ -5,10 +5,10 @@ import leavesLeft from "../../../assets/images/leaves_left.png";
 import leavesRight from "../../../assets/images/leaves_right.png";
 import smallLeavesRight from "../../../assets/images/small_leaves_right.png";
 
-import "../../../assets/styles/components/LandingHeader.scss";
+import "../../../assets/styles/components/HomeHeader.scss";
 import logo from "../../../assets/images/logo_white.svg";
 
-const LandingHeader = ({ isUserLogged, updateUserData }) => {
+const HomeHeader = ({ isUserLogged, updateUserData }) => {
   //Header parallax.
   const [offsetY, setOffsetY] = useState(0);
 
@@ -96,4 +96,4 @@ const LandingHeader = ({ isUserLogged, updateUserData }) => {
   );
 };
 
-export default LandingHeader;
+export default HomeHeader;
