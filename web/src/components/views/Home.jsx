@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import "../../assets/styles/components/Home.scss";
 
-import LandingHeader from "../sections/HomeComponents/HomeHeader";
-import LandingSlider from "../sections/HomeComponents/LandingSlider";
+import HomeHeader from "../sections/HomeComponents/HomeHeader";
+import HomeSlider from "../sections/HomeComponents/HomeSlider";
 
 const Home = ({ updateUserData, id, updateInfoMessage, infoMessage }) => {
   const linkPath = !!id ? `/user/${id}` : "";
