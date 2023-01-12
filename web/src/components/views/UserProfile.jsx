@@ -15,6 +15,7 @@ const UserProfile = ({
   getUserPlantsFromApi,
   deleteUserPlant,
   sendUserPlantsToApi,
+  updateUserData,
 }) => {
   const [filterPlants, setFilterPlants] = useState({ name: "" });
 
@@ -115,7 +116,7 @@ const UserProfile = ({
   };
 
   return isMenuOpen ? (
-    <SettingsMenu setMenuClose={setMenuClose} />
+    <SettingsMenu setMenuClose={setMenuClose} updateUserData={updateUserData} />
   ) : (
     <div className="page__user">
       <header className="header__user">

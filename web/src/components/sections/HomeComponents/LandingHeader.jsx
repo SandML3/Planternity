@@ -16,7 +16,6 @@ const LandingHeader = ({ isUserLogged, updateUserData }) => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    // return window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleCloseSesion = (ev) => {

@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+
+import ls from "../../services/localstorage";
 import "../../assets/styles/components/SettingsMenu.scss";
 
-const SettingsMenu = ({ setMenuClose }) => {
+const SettingsMenu = ({ setMenuClose, updateUserData }) => {
   const navigate = useNavigate();
 
   const exitMenu = () => {
@@ -9,8 +11,11 @@ const SettingsMenu = ({ setMenuClose }) => {
   };
 
   const logOut = () => {
+    updateUserData("id", "");
+    ls.remove("userData");
     navigate("/");
   };
+
   return (
     <div className="settingsMenu">
       <header className="settingsMenu__header">
