@@ -31,7 +31,7 @@ const getPlantsFromApi = () => {
 
 // --get user plants.
 const getUserPlantsFromApi = (userId) => {
-  console.log("Se están pidiendo datos de las plantas del usuario", userId);
+  //console.log("Se están pidiendo datos de las plantas del usuario", userId);
   return fetch(`//localhost:4000/api/user/${userId}/plants`)
     .then((response) => response.json())
     .then((data) => {

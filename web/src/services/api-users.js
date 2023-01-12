@@ -1,6 +1,6 @@
 // login
 const sendLoginToApi = (data) => {
-  console.log("Se están enviando datos al login:", data);
+  //console.log("Se están enviando datos al login:", data);
 
   const bodyParams = {
     email: data.email,
@@ -18,7 +18,7 @@ const sendLoginToApi = (data) => {
 
 // signup
 const sendSingUpToApi = (data) => {
-  console.log("Se están enviando datos al signup:", data);
+  //console.log("Se están enviando datos al signup:", data);
 
   return fetch("//localhost:4000/api/sign-up", {
     method: "POST",

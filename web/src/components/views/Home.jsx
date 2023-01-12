@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import "../../assets/styles/components/Home.scss";
 
-import LandingHeader from "../sections/HomeComponents/LandingHeader";
-import LandingSlider from "../sections/HomeComponents/LandingSlider";
+import HomeHeader from "../sections/HomeComponents/HomeHeader";
+import HomeSlider from "../sections/HomeComponents/HomeSlider";
 
 const Home = ({ updateUserData, id, updateInfoMessage, infoMessage }) => {
   const linkPath = !!id ? `/user/${id}` : "";
@@ -15,7 +15,7 @@ const Home = ({ updateUserData, id, updateInfoMessage, infoMessage }) => {
 
   return (
     <>
-      <LandingHeader isUserLogged={!!id} updateUserData={updateUserData} />
+      <HomeHeader isUserLogged={!!id} updateUserData={updateUserData} />
       <main className="main">
         <section className="main__home__text">
           <h3 className="main__home__text__title">
@@ -33,7 +33,7 @@ const Home = ({ updateUserData, id, updateInfoMessage, infoMessage }) => {
           <p className="main__home__text__text--two">¡Quédate a comprobarlo!</p>
         </section>
 
-        <LandingSlider />
+        <HomeSlider />
         <Link
           to={linkPath}
           className="landing__start__button link"

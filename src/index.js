@@ -133,7 +133,7 @@ app.post("/api/user-plants", (req, res) => {
 //Get user plants
 app.get("/api/user/:userId/plants", (req, res) => {
   console.log("devolviendo plantas del usuario");
-
+  console.log(req.params.userId);
   const query = db.prepare("SELECT plantId FROM user_info WHERE userId = ?");
   const result = query.all(req.params.userId);
   const userPlantsIds = result.map((item) => item.plantId);

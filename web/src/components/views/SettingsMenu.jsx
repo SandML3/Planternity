@@ -1,9 +1,19 @@
+import { useNavigate } from "react-router-dom";
+
 import "../../assets/styles/components/SettingsMenu.scss";
 
-const SettingsMenu = ({ setMenuClose }) => {
+const SettingsMenu = ({ setMenuClose, resetAllUserInfo }) => {
+  const navigate = useNavigate();
+
   const exitMenu = () => {
     setMenuClose();
   };
+
+  const logOut = () => {
+    resetAllUserInfo();
+    navigate("/");
+  };
+
   return (
     <div className="settingsMenu">
       <header className="settingsMenu__header">
@@ -18,7 +28,10 @@ const SettingsMenu = ({ setMenuClose }) => {
             Cambiar nombre de usuario
           </li>
           <li className="settingsMenu__main__item">Cambiar contraseña</li>
-          <li className="settingsMenu__main__item">Tema</li>
+          <li className="settingsMenu__main__item">Ajustes tema</li>
+          <li className="settingsMenu__main__item" onClick={logOut}>
+            Cerrar sesión
+          </li>
         </ul>
       </main>
     </div>

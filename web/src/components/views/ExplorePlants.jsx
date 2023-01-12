@@ -2,10 +2,10 @@ import "../../assets/styles/components/ExplorePlants.scss";
 
 //import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 import InputText from "../commons/InputText";
 import PlantItem from "../commons/PlantItem";
+import ButtonBack from "../commons/ButtonBack";
 
 const ExplorePlants = ({
   userData,
@@ -72,14 +72,10 @@ const ExplorePlants = ({
   return (
     <div className="explorePlants">
       <header className="explorePlants__header">
-        <nav className="explorePlants__header__nav">
-          <Link
-            to={`/user/${userData.id}`}
-            className="link explorePlants__header__link"
-          >
-            Volver
-          </Link>
-        </nav>
+        <ButtonBack
+          className="explorePlants__header__nav"
+          userId={userData.id}
+        />
         <h1 className="explorePlants__header__title">
           Descubre nuevas plantas
         </h1>

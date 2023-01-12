@@ -1,0 +1,12 @@
+@import "../core/variables.scss";
+
+.back-button {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.8rem;
+    
+    .link {
+    color: $main_color;
+    }
+}
+

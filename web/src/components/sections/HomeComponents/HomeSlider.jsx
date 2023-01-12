@@ -1,4 +1,4 @@
-import "../../../assets/styles/components/LandingSlider.scss";
+import "../../../assets/styles/components/HomeSlider.scss";
 
 import dataSliderItem from "../../../data/sliders_items.json";
 
@@ -7,7 +7,7 @@ import SliderItem from "./SliderItem";
 import { useEffect, useRef, useState } from "react";
 import ButtonSlider from "./ButtonSlider";
 
-const LandingSlider = (props) => {
+const HomeSlider = (props) => {
   const [slideItem, setSlideItem] = useState(0);
 
   //Rigth now, when the user resizes the window, the slider function don't work correctly because of the offsetWidth is the same until the user manually reloads the page. Perhaps it would be interesting save this in a state variable.
@@ -67,4 +67,4 @@ const LandingSlider = (props) => {
   );
 };
 
-export default LandingSlider;
+export default HomeSlider;

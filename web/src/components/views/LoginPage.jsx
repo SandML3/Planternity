@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import InputText from "../commons/InputText";
 
@@ -14,6 +14,8 @@ const LoginPage = ({
   loginMessage,
   updateInfoMessage,
 }) => {
+  const navigate = useNavigate();
+
   const handleClick = (ev) => {
     ev.preventDefault();
 
@@ -21,10 +23,10 @@ const LoginPage = ({
       email: userData.email,
       password: userData.password,
     }).then((response) => {
-      console.log(response);
+      //console.log(response);
       if (response.success) {
         updateUserData("id", response.userId);
-        return (window.location.href = `/user/${response.userId}`);
+        navigate(`/user/${response.userId}`);
       } else {
         updateInfoMessage("login", response.errorMessage);
       }

@@ -6,8 +6,13 @@ import ls from "../services/localstorage";
 import Router from "../routes/Router";
 
 import { useEffect, useState } from "react";
+import { useLocation, matchPath } from "react-router-dom";
 
 function App() {
+  const { pathname } = useLocation();
+  const userPath = matchPath("/user/:userId", pathname);
+  const paramsUserId = userPath ? userPath.params.userId : null;
+
   //State variables
   const [userData, setUserData] = useState(
     ls.get("userData") || {
@@ -32,9 +37,25 @@ function App() {
     ls.set("userPlants", userPlants);
   }, [userData, userPlants]);
 
+  useEffect(() => {
+    if (paramsUserId && Object.values(userData).some((value) => value === "")) {
+      apiUser.getUserDataFromApi(paramsUserId).then((response) => {
+        if (response.success) {
+          setUserData(response.userData);
+        }
+      });
+    }
+
+    if (userPlants.length === 0) {
+      apiPlants.getUserPlantsFromApi(paramsUserId).then((response) => {
+        setUserPlants(response.plants);
+      });
+    }
+  }, [paramsUserId, userData, userPlants.length]);
+
   //Lifting functions
   const updateUserData = (key, value) => {
-    console.log(key, value);
+    //console.log(key, value);
     setUserData({ ...userData, [key]: value });
   };
 
@@ -73,6 +94,16 @@ function App() {
     // }
   };
 
+  const resetAllUserInfo = () => {
+    setUserData({
+      id: "",
+      name: "",
+      email: "",
+      password: "",
+    });
+    setUserPlants([]);
+  };
+
   //--Get user plants
   // const getUserPlantsFromApi = (userId) => {
   //   apiPlants.getUserPlantsFromApi(userId).then((response) => response);
@@ -88,6 +119,7 @@ function App() {
         addUserPlant={addUserPlant}
         deleteUserPlant={deleteUserPlant}
         //
+        resetAllUserInfo={resetAllUserInfo}
         infoMessage={infoMessage}
         updateInfoMessage={updateInfoMessage}
         sendLoginToApi={apiUser.sendLoginToApi}

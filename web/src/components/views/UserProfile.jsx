@@ -1,7 +1,7 @@
 import "../../assets/styles/components/UserProfile.scss";
 
-import { Link, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 
 import InputText from "../commons/InputText";
 import PlantItem from "../commons/PlantItem";
@@ -10,48 +10,29 @@ import SettingsMenu from "./SettingsMenu";
 const UserProfile = ({
   userData,
   userPlants,
-  getUserDataFromApi,
-  saveInLocalStorage,
-  getUserPlantsFromApi,
   deleteUserPlant,
   sendUserPlantsToApi,
+  resetAllUserInfo,
 }) => {
+  //Set state variables
   const [filterPlants, setFilterPlants] = useState({ name: "" });
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const params = useParams();
 
+  //Hooks
+  const params = useParams();
+  const navigate = useNavigate();
+
+  //Lifting functions
   const updateFilterValue = (key, value) => {
     setFilterPlants({ ...filterPlants, [key]: value });
   };
-
-  useEffect(() => {
-    if (
-      params.userId &&
-      Object.values(userData).some((value) => value === "")
-    ) {
-      getUserDataFromApi(params.userId).then((response) => {
-        saveInLocalStorage("userData", response.userData);
-      });
-
-      getUserPlantsFromApi(params.userId).then((response) => {
-        saveInLocalStorage("userPlants", response.plants);
-      });
-    }
-  }, [
-    getUserDataFromApi,
-    getUserPlantsFromApi,
-    params.userId,
-    saveInLocalStorage,
-    userData,
-  ]);
 
   const getPlantDetails = (ev) => {
     if (
       ev.target.className === "plantItem__image" ||
       ev.target.className === "plantItem__name"
     ) {
-      window.location.href = `/user/${params.userId}/plant/${ev.currentTarget.id}`;
+      navigate(`/user/${params.userId}/plant/${ev.currentTarget.id}`);
     }
   };
 
@@ -60,6 +41,7 @@ const UserProfile = ({
     deleteUserPlant(plantId);
   };
 
+  //Template content
   const userPlantList = userPlants
     ? userPlants
         .filter(
@@ -114,7 +96,10 @@ const UserProfile = ({
   };
 
   return isMenuOpen ? (
-    <SettingsMenu setMenuClose={setMenuClose} />
+    <SettingsMenu
+      setMenuClose={setMenuClose}
+      resetAllUserInfo={resetAllUserInfo}
+    />
   ) : (
     <div className="page__user">
       <header className="header__user">
