@@ -15,10 +15,15 @@ const remove = (key) => {
   localStorage.removeItem(key);
 };
 
+const clear = () => {
+  localStorage.clear();
+};
+
 const objToExport = {
   get: get,
   set: set,
   remove: remove,
+  clear: clear,
 };
 
 export default objToExport;

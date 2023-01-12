@@ -23,7 +23,7 @@ const LoginPage = ({
       email: userData.email,
       password: userData.password,
     }).then((response) => {
-      console.log(response);
+      //console.log(response);
       if (response.success) {
         updateUserData("id", response.userId);
         navigate(`/user/${response.userId}`);

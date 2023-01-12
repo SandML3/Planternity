@@ -13,6 +13,7 @@ const Router = ({
   userPlants,
   addUserPlant,
   deleteUserPlant,
+  resetAllUserInfo,
   infoMessage,
   updateInfoMessage,
   sendLoginToApi,
@@ -68,13 +69,10 @@ const Router = ({
         element={
           <UserProfile
             userData={userData}
-            updateUserData={updateUserData}
-            getUserDataFromApi={getUserDataFromApi}
-            saveInLocalStorage={saveInLocalStorage}
             userPlants={userPlants}
             deleteUserPlant={deleteUserPlant}
             sendUserPlantsToApi={sendUserPlantsToApi}
-            getUserPlantsFromApi={getUserPlantsFromApi}
+            resetAllUserInfo={resetAllUserInfo}
           />
         }
       />
