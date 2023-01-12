@@ -1,6 +1,6 @@
 import "../../assets/styles/components/UserProfile.scss";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import InputText from "../commons/InputText";
@@ -20,6 +20,7 @@ const UserProfile = ({
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const params = useParams();
+  const navigate = useNavigate();
 
   const updateFilterValue = (key, value) => {
     setFilterPlants({ ...filterPlants, [key]: value });
@@ -51,7 +52,7 @@ const UserProfile = ({
       ev.target.className === "plantItem__image" ||
       ev.target.className === "plantItem__name"
     ) {
-      window.location.href = `/user/${params.userId}/plant/${ev.currentTarget.id}`;
+      navigate(`/user/${params.userId}/plant/${ev.currentTarget.id}`);
     }
   };
 
