@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import InputText from "../commons/InputText";
 import PlantItem from "../commons/PlantItem";
 import ButtonBack from "../commons/ButtonBack";
+import PlantsTypesView from "../sections/PlantsTypesView";
 
 const ExplorePlants = ({
   userData,
@@ -18,10 +19,18 @@ const ExplorePlants = ({
   //State variables
   const [allPlants, setAllPlants] = useState([]);
   const [filterPlants, setFilterPlants] = useState({ name: "" });
+  const [viewSelected, setViewSelected] = useState({
+    view: "all",
+    subView: null,
+  });
 
   //Lifting fuctions
   const updateFilterPlants = (key, value) => {
     setFilterPlants({ ...filterPlants, [key]: value });
+  };
+
+  const updateViewSelected = (view) => {
+    setViewSelected({ ...viewSelected, subView: view });
   };
 
   useEffect(() => {
@@ -43,7 +52,14 @@ const ExplorePlants = ({
     !isUserPlant ? addUserPlant(newPlant) : deleteUserPlant(newPlantId);
   };
 
+  if (viewSelected.subView) {
+    allPlants.filter((plant) => plant.type === viewSelected.subView);
+  }
+
   const plantsList = allPlants
+    .filter((plant) => {
+      return viewSelected.subView ? plant.type === viewSelected.subView : true;
+    })
     .filter(
       (plant) =>
         plant.common_name
@@ -69,6 +85,24 @@ const ExplorePlants = ({
       );
     });
 
+  const selectView = (ev) => {
+    ev.preventDefault();
+    setViewSelected({
+      ...viewSelected,
+      view: ev.currentTarget.id,
+      subView: null,
+    });
+  };
+
+  const listContent =
+    viewSelected.view === "all" ? (
+      <ul className="explorePlants__main__plantList">{plantsList}</ul>
+    ) : viewSelected.view === "types" && !viewSelected.subView ? (
+      <PlantsTypesView updateViewSelected={updateViewSelected} />
+    ) : (
+      <ul className="explorePlants__main__plantList">{plantsList}</ul>
+    );
+
   return (
     <div className="explorePlants">
       <header className="explorePlants__header">
@@ -91,11 +125,29 @@ const ExplorePlants = ({
             labelText=""
             placeholder="Buscar plantas por nombre"
           />
+          <div className="explorePlants__header__form__selectPlantsView">
+            <button
+              id="all"
+              onClick={selectView}
+              className={`explorePlants__header__form__selectPlantsView__button ${
+                viewSelected.view === "all" ? "active" : null
+              }`}
+            >
+              Ver todas
+            </button>
+            <button
+              className={`explorePlants__header__form__selectPlantsView__button ${
+                viewSelected.view === "types" ? "active" : null
+              }`}
+              onClick={selectView}
+              id="types"
+            >
+              Buscar por tipo
+            </button>
+          </div>
         </form>
       </header>
-      <main className="explorePlants__main">
-        <ul className="explorePlants__main__plantList">{plantsList}</ul>
-      </main>
+      <main className="explorePlants__main">{listContent}</main>
     </div>
   );
 };

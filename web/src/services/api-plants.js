@@ -43,10 +43,25 @@ const getUserPlantsFromApi = (userId) => {
     });
 };
 
+// --get user plants.
+const getPlantsTypes = () => {
+  //console.log("Se están pidiendo los tipos de plantas");
+  return fetch(`//localhost:4000/api/plants/types`)
+    .then((response) => response.json())
+    .then((data) => {
+      const result = {
+        success: true,
+        plantsTypes: data,
+      };
+      return result;
+    });
+};
+
 const objToExport = {
   sendUserPlantsToApi: sendUserPlantsToApi,
   getUserPlantsFromApi: getUserPlantsFromApi,
   getPlantsFromApi: getPlantsFromApi,
+  getPlantsTypes: getPlantsTypes,
 };
 
 export default objToExport;

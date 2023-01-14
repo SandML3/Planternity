@@ -27,6 +27,33 @@
 
         &__form {
             margin-left: 1rem;
+
+            &__selectPlantsView {
+                background-color: $background_color-components;
+                margin: 2rem 0rem 0rem 0rem;
+                padding: 0.2rem;
+                border-radius: 100px;
+                width: 20vh;
+                display: flex;
+                justify-content: space-around;
+                
+
+                &__button {
+                    border: transparent;
+                    background-color: transparent;
+                    color: rgb(108, 121, 116);
+                    font-size: 0.8rem;
+                }
+
+                .active {
+                    background-color: white;
+                    border-radius: 100px;
+                    padding: 0.3rem 0.5rem;
+                    filter: drop-shadow(0 0 0.1rem rgb(186, 186, 186));
+                    color: rgb(63, 71, 68);
+                    
+                }
+            }
         }
 
         &__filter{
@@ -39,6 +66,7 @@
     }
 
     &__main {
+     height: fit-content;
 
       &__plantList {
         margin: 0 auto;
@@ -48,6 +76,7 @@
         justify-content: space-arround;
         padding: 2rem;
         padding-top: 1rem;
+        
        
 
         .plantList__item {
@@ -57,7 +86,7 @@
             flex-direction: column;
             justify-content: center;
             text-align: center;
-            margin: 0.5rem;
+            //margin: 0.5rem;
             font-weight: 500;
             width: 8.2rem;
             position: relative;

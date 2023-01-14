@@ -101,10 +101,13 @@ app.post("/api/users", (req, res) => {
 
 //Get all plants
 app.get("/api/plants", (req, res) => {
-  //console.log("devolviendo plantas");
-  const query = db.prepare("SELECT * FROM plants");
+  console.log("devolviendo TODAS las plantas");
+  const query = db.prepare(
+    "SELECT * FROM plants INNER JOIN plants_types ON plants.type = plants_types.type_id"
+  );
   const result = query.all();
-  //console.log(result);
+
+  console.log(result);
 
   res.json(result);
 });
@@ -142,6 +145,15 @@ app.get("/api/user/:userId/plants", (req, res) => {
   const userPlantsInfo = userPlantsIds.map((id) => plantsInfoQuery.get(id));
 
   res.json(userPlantsInfo);
+});
+
+//Get plants types
+app.get("/api/plants/types", (req, res) => {
+  //console.log("devolviendo tipos de plantas");
+  const query = db.prepare("SELECT * FROM plants_types");
+  const result = query.all();
+
+  res.json(result);
 });
 
 //Static servers.
